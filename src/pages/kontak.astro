@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { faqs } from '../data/content.ts';
+
+function faqCat(q: string): string {
+  const l = q.toLowerCase();
+  if (l.includes('booking') || l.includes('batalkan') || l.includes('pindah') || l.includes('minimal') || l.includes('sendirian')) return 'booking';
+  if (l.includes('bayar') || l.includes('transfer') || l.includes('qris') || l.includes('bukti')) return 'payment';
+  if (l.includes('raket') || l.includes('bola') || l.includes('alat') || l.includes('fasilitas')) return 'venue';
+  return 'general';
+}
+---
+
+<Layout title="Kontak & FAQ - Demo Padel" description="Hubungi Demo Padel via WhatsApp atau baca FAQ.">
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="/">Beranda</a> / <span>Kontak & FAQ</span></nav>
+      <h1>Kontak & Bantuan</h1>
+      <p>Butuh bantuan? Tim kami siap jawab via WhatsApp.</p>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2 style="margin-bottom:0.5rem;">Hubungi Kami</h2>
+          <p style="margin-bottom:2rem;">Cara paling cepet: chat WhatsApp. Biasanya balas dalam 5 menit.</p>
+
+          <div class="contact-methods">
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="cm">
+              <div class="cm-icon" style="background:#25D366;"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+              <div><strong>WhatsApp</strong><span>0812-3456-7890</span><small>Senin-Minggu, 08:00-22:00</small></div>
+            </a>
+            <a href="mailto:hello@demopadel.com" class="cm">
+              <div class="cm-icon" style="background:var(--primary);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" width="20" height="20"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+              <div><strong>Email</strong><span>hello@demopadel.com</span><small>Balas dalam 1x24 jam</small></div>
+            </a>
+            <div class="cm">
+              <div class="cm-icon" style="background:var(--accent);"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" width="20" height="20"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div><strong>Kantor</strong><span>Jl. Pintu Satu Senayan, Jakarta Pusat</span><small>Hanya untuk surat-menyurat</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-card card">
+          <h2 style="margin-bottom:1.5rem;">Kirim Pesan</h2>
+          <form id="contactForm">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+              <div class="input-group">
+                <label class="input-label">Nama *</label>
+                <input type="text" name="name" class="input-field" required />
+              </div>
+              <div class="input-group">
+                <label class="input-label">WhatsApp *</label>
+                <input type="tel" name="phone" class="input-field" placeholder="08xxxxxxxxxx" required />
+              </div>
+            </div>
+            <div class="input-group" style="margin-bottom:1rem;">
+              <label class="input-label">Email</label>
+              <input type="email" name="email" class="input-field" />
+            </div>
+            <div class="input-group" style="margin-bottom:1rem;">
+              <label class="input-label">Topik *</label>
+              <select name="subject" class="input-field" required>
+                <option value="">Pilih topik</option>
+                <option value="booking">Booking & Jadwal</option>
+                <option value="payment">Pembayaran & Refund</option>
+                <option value="venue">Venue & Fasilitas</option>
+                <option value="event">Event & Turnamen</option>
+                <option value="coaching">Coaching & Klinik</option>
+                <option value="other">Lainnya</option>
+              </select>
+            </div>
+            <div class="input-group" style="margin-bottom:1.5rem;">
+              <label class="input-label">Pesan *</label>
+              <textarea name="message" class="input-field" rows="4" required placeholder="Tulis pesan kamu di sini..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Kirim ke WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-tag">Pertanyaan Umum</span>
+        <h2>FAQ Demo Padel</h2>
+      </header>
+      <div class="faq-list">
+        {faqs.map((faq) => (
+          <details class="faq-item" data-cat={faqCat(faq.question)}>
+            <summary><span>{faq.question}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" style="flex-shrink:0;transition:transform 0.3s ease;"><polyline points="6 9 12 15 18 9"/></svg></summary>
+            <div class="faq-body"><p>{faq.answer}</p></div>
+          </details>
+        ))}
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <p style="margin-bottom:1rem;">Masih gak nemu jawabannya?</p>
+        <a href="https://wa.me/6281234567890?text=Halo%20Demo%20Padel%2C%20saya%20mau%20tanya" target="_blank" rel="noopener" class="btn btn-primary">Tanya via WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: calc(var(--header-h) + clamp(2rem,5vw,4rem)) 0 clamp(2rem,5vw,3rem);
+    background: var(--primary-dark); color: #fff;
+  }
+  .page-hero h1 { color: #fff; margin-bottom: 0.5rem; }
+  .page-hero p { color: rgba(255,255,255,0.7); }
+  .breadcrumb { font-size: 0.8125rem; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+  .breadcrumb a { color: rgba(255,255,255,0.5); }
+
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+  .contact-methods { display: flex; flex-direction: column; gap: 1rem; }
+  .cm {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem; background: var(--cream); border-radius: var(--radius-xl);
+    transition: all 0.3s ease; text-decoration: none;
+  }
+  .cm:hover { background: var(--primary); transform: translateX(4px); }
+  .cm:hover strong, .cm:hover span, .cm:hover small { color: #fff; }
+  .cm-icon { width: 48px; height: 48px; border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .cm strong { display: block; color: var(--dark); }
+  .cm span { display: block; font-size: 0.9375rem; color: var(--gray-600); }
+  .cm small { display: block; font-size: 0.75rem; color: var(--gray-400); margin-top: 2px; }
+
+  .contact-form-card { padding: 2rem; position: sticky; top: calc(var(--header-h) + 1rem); }
+
+  .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+  .faq-item {
+    background: var(--white); border-radius: var(--radius-xl);
+    border: 1px solid var(--gray-100); overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  .faq-item[open] { border-color: var(--primary); box-shadow: var(--shadow-sm); }
+  .faq-item summary {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 1.5rem; cursor: pointer;
+    font-weight: 600; font-size: 0.9375rem; color: var(--dark);
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item[open] summary svg { transform: rotate(180deg); color: var(--primary); }
+  .faq-body {
+    padding: 0 1.5rem 1.25rem; color: var(--gray-600); line-height: 1.7;
+    animation: faq-open 0.3s ease;
+  }
+  @keyframes faq-open { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } .contact-form-card { position: static; } }
+</style>
+
+<script>
+  document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const fd = new FormData(e.target as HTMLFormElement);
+    const n = fd.get('name'), p = fd.get('phone'), em = fd.get('email'), s = fd.get('subject'), m = fd.get('message');
+    if (!n || !p || !s || !m) return;
+    const labels: Record<string,string> = { booking: 'Booking', payment: 'Pembayaran', venue: 'Venue', event: 'Event', coaching: 'Coaching', other: 'Lainnya' };
+    const msg = `Halo Demo Padel, saya mau bertanya:\n\nNama: ${n}\nWhatsApp: ${p}\n${em ? `Email: ${em}\n` : ''}Topik: ${labels[s as string] || s}\nPesan: ${m}`;
+    window.open(`https://wa.me/6281234567890?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+</script>

@@ -1,0 +1,140 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Tentang Kami - Demo Padel" description="Cerita Demo Padel: platform booking lapangan padel yang bikin main padel jadi gampang.">
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="/">Beranda</a> / <span>Tentang Kami</span></nav>
+      <h1>Tentang Demo Padel</h1>
+      <p>Kami bikin main padel semudah pesan ojek online. Gak perlu ribet, gak perlu lama.</p>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 style="margin-bottom:1rem;">Misi Kami: Main Padel, Booking Gampang</h2>
+          <p style="margin-bottom:1.25rem;font-size:1.0625rem;line-height:1.8;">Demo Padel lahir dari frustrasi main padel di Indonesia: telepon ke lapangan satu-satu, jam penuh nggak tau, harga beda-beda, konfirmasi lewat WA yang lambat. Kami pikir, "Kenapa gak ada yang bikin ini gampang?"</p>
+          <p style="margin-bottom:1.25rem;line-height:1.8;">Jadi kami bikin platform yang ngurusin semuanya: cek jadwal real-time, harga transparan, bayar transfer/QRIS, konfirmasi otomatis ke WhatsApp. Selesai dalam 60 detik.</p>
+          <p style="line-height:1.8;">Hari ini, lebih dari 15.000 pemain udah booking lewat Demo Padel. Dari pemula yang baru pegang raket pertama kali, sampai tim korporat yang adain turnamen tahunan.</p>
+        </div>
+        <div class="about-image">
+          <img src="/images/padel-3.webp" alt="Tim Demo Padel" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-tag">Nilai Kami</span>
+        <h2>Yang Kami Pegang Teguh</h2>
+      </header>
+      <div class="values-grid grid grid-3">
+        {[
+          { icon: 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', title: 'Transparan', desc: 'Harga yang kelihat = harga yang dibayar. Gak ada biaya tersembunyi.' },
+          { icon: 'M12 6v6l4 2M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z', title: 'Cepat & Mudah', desc: 'Booking 60 detik. Pilih venue, jam, bayar, main.' },
+          { icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75', title: 'Ramah Pemain', desc: 'Dibikin oleh pemain padel, buat pemain padel.' },
+          { icon: 'M12 2L2 7l10 5 10-5-10-5z M2 17l10 5 10-5 M2 12l10 5 10-5', title: 'Inovasi Terus', desc: 'Fitur baru tiap bulan: live score, komunitas, loyalty.' },
+          { icon: 'M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V14.66', title: 'Komunitas Dulu', desc: 'Event rutin, clinic, turnamen. Main padel jadi lebih seru.' },
+          { icon: 'M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75', title: 'Standar Pro', desc: 'Venue bermutu, coach bersertifikat, harga terjangkau.' }
+        ].map((v) => (
+          <div class="value-card card">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d={v.icon}/></svg>
+            </div>
+            <h3>{v.title}</h3>
+            <p>{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-tag">Timeline</span>
+        <h2>Perjalanan Demo Padel</h2>
+      </header>
+      <div class="timeline">
+        {[
+          { year: '2023', title: 'Ide & Riset', desc: 'Wawancara 200+ pemain padel di Jakarta.' },
+          { year: '2024', title: 'Launch MVP', desc: 'Rilis versi beta untuk 5 venue mitra. 1.000 booking dalam 3 bulan.' },
+          { year: '2024', title: 'Ekspansi', desc: 'Tambah 12 venue baru. Launch fitur coaching & event corporate.' },
+          { year: '2025', title: 'Platform Lengkap', desc: 'Integrasi QRIS, loyalty, komunitas. 15.000+ pemain.' },
+          { year: '2025', title: 'Demo Padel v2.0', desc: 'Redesign UI/UX, real-time availability, analytics venue.' }
+        ].map((item) => (
+          <div class="tl-item">
+            <div class="tl-dot"></div>
+            <div class="tl-content">
+              <span class="tl-year">{item.year}</span>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="text-align:center;">
+    <div class="container">
+      <h2 style="margin-bottom:0.75rem;">Mau Bergabung dengan Tim Kami?</h2>
+      <p style="margin-bottom:2rem;max-width:500px;margin-left:auto;margin-right:auto;">Kami cari orang-orang yang suka padel, suka teknologi, dan mau bikin main olahraga jadi lebih gampang.</p>
+      <a href="https://wa.me/6281234567890?text=Halo%20Demo%20Padel%2C%20saya%20mau%20apply%20karir" target="_blank" rel="noopener" class="btn btn-accent btn-lg">Lihat Lowongan</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: calc(var(--header-h) + clamp(2rem,5vw,4rem)) 0 clamp(2rem,5vw,3rem);
+    background: var(--primary-dark); color: #fff;
+  }
+  .page-hero h1 { color: #fff; margin-bottom: 0.5rem; }
+  .page-hero p { color: rgba(255,255,255,0.7); font-size: 1.0625rem; }
+  .breadcrumb { font-size: 0.8125rem; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+  .breadcrumb a { color: rgba(255,255,255,0.5); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .about-image img { border-radius: var(--radius-2xl); box-shadow: var(--shadow-xl); width: 100%; }
+
+  .value-card { text-align: center; padding: 2rem 1.5rem; height: 100%; }
+  .value-icon {
+    width: 64px; height: 64px; border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1rem; color: #fff;
+  }
+  .value-card h3 { font-size: 1.0625rem; margin-bottom: 0.5rem; }
+  .value-card p { font-size: 0.875rem; color: var(--gray-500); }
+
+  .timeline { position: relative; max-width: 700px; margin: 0 auto; }
+  .timeline::before {
+    content: ''; position: absolute; left: 23px; top: 0; bottom: 0;
+    width: 2px; background: var(--gray-200);
+  }
+  .tl-item { display: flex; gap: 1.5rem; padding-bottom: 2rem; position: relative; }
+  .tl-dot {
+    width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+    background: var(--white); border: 3px solid var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1;
+  }
+  .tl-dot::after { content: ''; width: 14px; height: 14px; border-radius: 50%; background: var(--primary); }
+  .tl-content { flex: 1; }
+  .tl-year {
+    display: inline-block; padding: 0.2rem 0.625rem;
+    background: var(--primary-50); color: var(--primary);
+    border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600;
+    margin-bottom: 0.375rem;
+  }
+  .tl-content h3 { font-size: 1.0625rem; margin-bottom: 0.25rem; }
+  .tl-content p { font-size: 0.875rem; color: var(--gray-500); }
+
+  @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } .about-image { order: -1; } }
+</style>

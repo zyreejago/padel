@@ -1,0 +1,196 @@
+---
+import { venues } from '../data/content.ts';
+---
+
+<section class="vnp-section" id="venue" aria-labelledby="venue-title">
+  <div class="container">
+    <header class="vnp-header">
+      <div class="vnp-header-left">
+        <span class="vnp-tag">Venue Unggulan</span>
+        <h2 id="venue-title" class="vnp-title">Lapangan Terbaik<br />di Sekitar Kamu</h2>
+        <p class="vnp-subtitle">Indoor, outdoor, rooftop. Pilih yang paling deket & nyaman.</p>
+      </div>
+      <a href="/venue" class="vnp-viewall">
+        Lihat Semua
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </header>
+
+    <div class="vnp-list">
+      {venues.map((v, i) => (
+        <a href="/booking" class={`vnp-card ${i === 0 ? 'vnp-card--featured' : ''}`}>
+          <div class="vnp-card-visual">
+            <img src={v.image} alt={v.name} loading="lazy" />
+            <div class="vnp-card-overlay"></div>
+            <span class="vnp-card-type">{v.type}</span>
+            <div class="vnp-card-rank">{String(i + 1).padStart(2, '0')}</div>
+          </div>
+          <div class="vnp-card-body">
+            <div class="vnp-card-top">
+              <h3 class="vnp-card-name">{v.name}</h3>
+              <div class="vnp-card-rating">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                {v.rating}
+              </div>
+            </div>
+            <p class="vnp-card-addr">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              {v.address.split(',').slice(0, 2).join(', ')}
+            </p>
+            <div class="vnp-card-details">
+              <span class="vnp-detail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                {v.courts} Lapangan
+              </span>
+              <span class="vnp-detail-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                {v.hours}
+              </span>
+            </div>
+            <div class="vnp-card-footer">
+              <div class="vnp-price">
+                <span class="vnp-price-label">Mulai dari</span>
+                <span class="vnp-price-value">Rp {v.price}<span class="vnp-price-unit">/jam</span></span>
+              </div>
+              <span class="vnp-book-btn">
+                Booking
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .vnp-section { padding: clamp(4rem, 8vw, 6rem) 0; background: var(--cream); }
+
+  .vnp-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 2rem; margin-bottom: clamp(2rem, 4vw, 3rem); flex-wrap: wrap;
+  }
+  .vnp-tag {
+    display: inline-block; font-size: 0.6875rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--primary); background: rgba(10,61,50,0.08);
+    padding: 0.375rem 0.875rem; border-radius: 999px;
+    margin-bottom: 0.75rem;
+  }
+  .vnp-title {
+    font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 3.75rem);
+    font-weight: 900; text-transform: uppercase; line-height: 0.95;
+    letter-spacing: -0.03em; color: var(--dark); margin-bottom: 0.75rem;
+  }
+  .vnp-subtitle { font-size: 1rem; color: var(--gray-500); max-width: 360px; }
+  .vnp-viewall {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.875rem; font-weight: 700; color: var(--dark);
+    text-decoration: none; padding: 0.75rem 1.5rem;
+    border: 2px solid var(--dark); border-radius: 999px;
+    transition: all 0.3s ease; white-space: nowrap;
+  }
+  .vnp-viewall:hover { background: var(--dark); color: #fff; }
+
+  .vnp-list {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .vnp-card {
+    display: flex; flex-direction: column;
+    background: var(--white); border-radius: 20px;
+    overflow: hidden; text-decoration: none; color: inherit;
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .vnp-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+  .vnp-card--featured { grid-column: span 1; }
+
+  .vnp-card-visual {
+    position: relative; overflow: hidden;
+    aspect-ratio: 4/3;
+  }
+  .vnp-card-visual img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .vnp-card:hover .vnp-card-visual img { transform: scale(1.06); }
+  .vnp-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.4));
+  }
+  .vnp-card-type {
+    position: absolute; top: 0.75rem; left: 0.75rem;
+    padding: 0.3rem 0.75rem; background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px); border-radius: 999px;
+    font-size: 0.6875rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em; color: var(--dark);
+  }
+  .vnp-card-rank {
+    position: absolute; bottom: 0.75rem; right: 0.75rem;
+    font-size: 2rem; font-weight: 900; color: rgba(255,255,255,0.25);
+    line-height: 1; letter-spacing: -0.05em;
+  }
+
+  .vnp-card-body {
+    padding: 1.25rem; display: flex; flex-direction: column; flex: 1;
+  }
+  .vnp-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.375rem; }
+  .vnp-card-name {
+    font-size: 1.0625rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.01em; line-height: 1.2; color: var(--dark);
+  }
+  .vnp-card-rating {
+    display: inline-flex; align-items: center; gap: 0.25rem;
+    padding: 0.2rem 0.5rem; background: #FFF8E1;
+    border-radius: 999px; font-size: 0.75rem; font-weight: 700;
+    color: #E6A817; white-space: nowrap; flex-shrink: 0;
+  }
+  .vnp-card-addr {
+    display: flex; align-items: center; gap: 0.375rem;
+    font-size: 0.8125rem; color: var(--gray-500); line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+  .vnp-card-details {
+    display: flex; gap: 1rem; margin-bottom: 1rem;
+  }
+  .vnp-detail-item {
+    display: flex; align-items: center; gap: 0.25rem;
+    font-size: 0.75rem; color: var(--gray-400); font-weight: 500;
+  }
+
+  .vnp-card-footer {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    padding-top: 0.875rem; border-top: 1px solid var(--gray-100);
+    margin-top: auto;
+  }
+  .vnp-price-label {
+    display: block; font-size: 0.6875rem; color: var(--gray-400);
+    text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600;
+    margin-bottom: 0.125rem;
+  }
+  .vnp-price-value {
+    font-size: 1.125rem; font-weight: 800; color: var(--dark);
+    letter-spacing: -0.02em;
+  }
+  .vnp-price-unit { font-size: 0.75rem; font-weight: 500; color: var(--gray-400); }
+  .vnp-book-btn {
+    display: inline-flex; align-items: center; gap: 0.375rem;
+    padding: 0.5rem 1rem; background: var(--primary); color: #fff;
+    border-radius: 999px; font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    transition: all 0.3s ease; white-space: nowrap;
+  }
+  .vnp-card:hover .vnp-book-btn { background: var(--accent); color: var(--dark); }
+
+  @media (max-width: 1024px) {
+    .vnp-list { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .vnp-list { grid-template-columns: 1fr; }
+    .vnp-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>

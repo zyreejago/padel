@@ -1,0 +1,94 @@
+---
+---
+
+<section class="feat-section" aria-labelledby="feat-title">
+  <div class="feat-header">
+    <div class="container feat-header-inner">
+      <div class="feat-title-wrap">
+        <span class="feat-heading" id="feat-title">KENAPA<br />DEMO PADEL</span>
+      </div>
+      <p class="feat-desc">Kami bikin main padel semudah pesan ojek online. Cek jadwal, bayar, main. Selesai.</p>
+    </div>
+  </div>
+
+  <div class="feat-marquee-wrapper">
+    <div class="feat-marquee" id="featMarquee">
+      {[
+        { num: '01', title: 'BOOKING 60 DETIK', desc: 'Pilih venue, tanggal, jam. Bayar transfer/QRIS. Konfirmasi langsung ke WA.', img: '/images/padel-1.jpeg' },
+        { num: '02', title: 'HARGA TRANSPARAN', desc: 'Harga yang kelihat = harga yang dibayar. Gak ada biaya admin tersembunyi.', img: '/images/padel-2.jpeg' },
+        { num: '03', title: 'COACH BERSERTIFIKAT', desc: 'Pelatih berlisensi ITF/PTP. Coaching pribadi, grup, atau clinic. Progres terjamin.', img: '/images/padel-3.avif' },
+        { num: '04', title: 'EVENT & KOMUNITAS', desc: 'Turnamen rutin, corporate event, clinic weekend. Main sambil networking.', img: '/images/padel-1.jpeg' },
+      ].map((f) => (
+        <div class="feat-card">
+          <div class="feat-card-bg" style={`background-image: url(${f.img})`}></div>
+          <div class="feat-card-overlay"></div>
+          <div class="feat-card-content">
+            <span class="feat-num">{f.num}</span>
+            <h3>{f.title}</h3>
+            <p>{f.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .feat-section { padding: clamp(4rem, 8vw, 6rem) 0; background: var(--white); overflow: hidden; }
+  .feat-header { margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .feat-header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .feat-heading {
+    font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900; text-transform: uppercase; line-height: 0.95;
+    letter-spacing: -0.03em; color: var(--dark);
+  }
+  .feat-desc { max-width: 380px; font-size: 1rem; color: var(--gray-500); line-height: 1.7; padding-top: 0.5rem; }
+
+  .feat-marquee-wrapper { overflow: hidden; padding: 0 clamp(1rem, 4vw, 2rem); }
+  .feat-marquee {
+    display: flex; gap: 1.5rem;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -ms-overflow-style: none;
+    padding-bottom: 0.5rem;
+  }
+  .feat-marquee::-webkit-scrollbar { display: none; }
+
+  .feat-card {
+    flex: 0 0 clamp(300px, 35vw, 420px);
+    scroll-snap-align: start;
+    position: relative; height: 380px;
+    border-radius: 22px; overflow: hidden;
+    cursor: pointer; transition: transform 0.4s var(--ease-out-expo);
+  }
+  .feat-card:hover { transform: scale(1.02); }
+  .feat-card-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transition: transform 0.6s var(--ease-out-expo);
+  }
+  .feat-card:hover .feat-card-bg { transform: scale(1.08); }
+  .feat-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 100%);
+  }
+  .feat-card-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 2rem; z-index: 2;
+  }
+  .feat-num {
+    font-size: 4rem; font-weight: 900; color: rgba(255,255,255,0.12);
+    line-height: 1; letter-spacing: -0.05em; display: block; margin-bottom: -1rem;
+  }
+  .feat-card-content h3 {
+    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+    font-weight: 900; color: #fff; text-transform: uppercase;
+    letter-spacing: -0.01em; line-height: 1.05; margin-bottom: 0.5rem;
+  }
+  .feat-card-content p {
+    font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .feat-card { height: 300px; }
+  }
+</style>

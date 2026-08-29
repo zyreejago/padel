@@ -1,0 +1,65 @@
+---
+---
+
+<section class="cta-section" aria-labelledby="cta-title">
+  <div class="cta-bg">
+    <img src="/images/padel-2.jpeg" alt="" loading="lazy" />
+    <div class="cta-overlay"></div>
+  </div>
+  <div class="container cta-inner">
+    <span class="cta-tag">Siap Main Padel?</span>
+    <h2 id="cta-title">Booking Sekarang,<br />Main Besok</h2>
+    <p>Pilih venue favoritmu, cek jadwal kosong, dan booking dalam hitungan detik.</p>
+    <div class="cta-btns">
+      <a href="/booking" class="btn btn-accent btn-lg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Cek Jadwal & Booking
+      </a>
+      <a href="https://wa.me/6281234567890?text=Halo%20Demo%20Padel%2C%20saya%20mau%20booking" target="_blank" rel="noopener" class="btn btn-lg cta-ghost">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Tanya via WhatsApp
+      </a>
+    </div>
+    <p class="cta-trust">15.000+ pemain percaya &bull; Pembayaran aman &bull; Konfirmasi instan</p>
+  </div>
+</section>
+
+<style>
+  .cta-section {
+    position: relative;
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute; inset: 0; z-index: 0;
+  }
+  .cta-bg img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .cta-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(0,0,0,0.88) 0%, rgba(10,61,50,0.92) 100%);
+  }
+  .cta-inner { text-align: center; position: relative; z-index: 2; }
+  .cta-tag {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    background: var(--accent);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem; font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .cta-section h2 { color: #fff; margin-bottom: 0.75rem; }
+  .cta-section p { color: rgba(255,255,255,0.6); font-size: 1.0625rem; max-width: 520px; margin: 0 auto; }
+  .cta-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin: 2.5rem 0 1.75rem; }
+  .cta-ghost { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; }
+  .cta-ghost:hover { background: rgba(255,255,255,0.18); }
+  .cta-trust { font-size: 0.8125rem; color: rgba(255,255,255,0.3); font-weight: 500; }
+
+  @media (max-width: 480px) {
+    .cta-btns { flex-direction: column; align-items: stretch; }
+    .cta-btns .btn { max-width: 300px; margin: 0 auto; width: 100%; }
+  }
+</style>

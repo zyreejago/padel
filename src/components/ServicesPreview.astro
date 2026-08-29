@@ -1,0 +1,96 @@
+---
+import { services } from '../data/content.ts';
+---
+
+<section class="section bg-white" id="layanan" aria-labelledby="svc-title">
+  <div class="container">
+    <header class="section-header">
+      <span class="section-tag">Layanan Kami</span>
+      <h2 id="svc-title">Semua yang Butuh<br />Main Padel, Ada di Sini</h2>
+      <p>Dari sewa lapangan sampai coaching dan event korporat. Satu platform, urus semua.</p>
+    </header>
+
+    <div class="svc-grid grid grid-3">
+      {services.map((s) => (
+        <div class="svc-card card">
+          <div class="svc-card-top">
+            <div class="svc-icon">
+              {s.icon === 'court' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="2" y="2" width="20" height="20" rx="2"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg>}
+              {s.icon === 'equipment' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>}
+              {s.icon === 'coaching' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>}
+              {s.icon === 'trophy' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V14.66"/><path d="M18 2H6"/></svg>}
+              {s.icon === 'coffee' && <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V9a1 1 0 0 1 1-1h10"/><path d="M7 3h10"/></svg>}
+            </div>
+            {s.popular && <span class="badge">Populer</span>}
+          </div>
+
+          <h3>{s.title}</h3>
+          <p class="svc-desc">{s.description}</p>
+
+          <div class="svc-price">
+            <span class="svc-price-amount">Rp {s.price}</span>
+            <span class="svc-price-unit">/{s.unit}</span>
+          </div>
+
+          <ul class="svc-features">
+            {s.features.map(f => (
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>
+                {f}
+              </li>
+            ))}
+          </ul>
+
+          <div class="svc-actions">
+            <a href="/booking" class="btn btn-primary" style="flex:1;">Booking Sekarang</a>
+            <a href="https://wa.me/6281234567890?text=Halo%20Demo%20Padel%2C%20saya%20mau%20tanya%20tentang%20{encodeURIComponent(s.title)}" target="_blank" rel="noopener" class="btn btn-ghost" style="flex:1;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Tanya via WA
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .svc-card {
+    display: flex; flex-direction: column;
+    padding: 1.75rem;
+  }
+  .svc-card-top {
+    display: flex; justify-content: space-between;
+    align-items: flex-start; margin-bottom: 1.25rem;
+  }
+  .svc-icon {
+    width: 56px; height: 56px;
+    border-radius: 16px;
+    background: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; flex-shrink: 0;
+  }
+  .svc-card h3 {
+    font-size: 1.125rem; margin-bottom: 0.5rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.02em;
+  }
+  .svc-desc { font-size: 0.875rem; color: var(--gray-500); margin-bottom: 1.25rem; flex: 1; line-height: 1.7; }
+  .svc-price {
+    display: flex; align-items: baseline; gap: 0.25rem;
+    margin-bottom: 1.25rem; padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .svc-price-amount { font-family: var(--font-body); font-size: 1.5rem; font-weight: 800; color: var(--primary); letter-spacing: -0.02em; }
+  .svc-price-unit { font-size: 0.8125rem; color: var(--gray-400); }
+
+  .svc-features {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    margin-bottom: 1.5rem; flex: 1;
+  }
+  .svc-features li {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8125rem; color: var(--gray-600);
+  }
+
+  .svc-actions { display: flex; gap: 0.5rem; }
+</style>

@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { venues } from '../data/content.ts';
+---
+
+<Layout title="Venue Padel - Demo Padel" description="Daftar venue padel terbaik di Jakarta, BSD, PIK.">
+  <section class="page-hero">
+    <div class="container">
+      <nav class="breadcrumb"><a href="/">Beranda</a> / <span>Venue</span></nav>
+      <h1>Venue Padel Terdekat</h1>
+      <p>Lebih dari 20 venue di Jakarta, BSD, PIK, dan sekitarnya.</p>
+    </div>
+  </section>
+
+  <section class="section bg-white">
+    <div class="container">
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-pill active" data-filter="all">Semua</button>
+        <button class="filter-pill" data-filter="indoor">Indoor</button>
+        <button class="filter-pill" data-filter="outdoor">Outdoor</button>
+        <button class="filter-pill" data-filter="indooroutdoor">Indoor + Outdoor</button>
+      </div>
+
+      <div class="venue-list">
+        {venues.map((v) => (
+          <div class="venue-detail-card card" data-type={v.type.toLowerCase().replace(/\s+/g,'').replace('+','')}>
+            <div class="vd-img">
+              <img src={v.image} alt={v.name} loading="lazy" />
+              <span class="vd-badge">{v.type}</span>
+              <div class="vd-rating">
+                <svg viewBox="0 0 24 24" fill="var(--accent)" width="14" height="14"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                {v.rating} <span>({v.reviews})</span>
+              </div>
+            </div>
+            <div class="vd-body">
+              <h2 style="font-size:1.375rem;margin-bottom:0.25rem;">{v.name}</h2>
+              <p class="vd-addr">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                {v.address}
+              </p>
+              <div class="vd-meta">
+                <span>{v.courts} Lapangan</span>
+                <span>{v.hours}</span>
+              </div>
+              <div class="vd-features">
+                {v.features.map(f => <span class="vd-tag">{f}</span>)}
+              </div>
+              <div class="vd-footer">
+                <span class="vd-price">Mulai <strong>Rp {v.price}/jam</strong></span>
+                <a href="/booking" class="btn btn-primary">Booking Sekarang</a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-hero {
+    padding: calc(var(--header-h) + clamp(2rem,5vw,4rem)) 0 clamp(2rem,5vw,3rem);
+    background: var(--primary-dark); color: #fff;
+  }
+  .page-hero h1 { color: #fff; margin-bottom: 0.5rem; }
+  .page-hero p { color: rgba(255,255,255,0.7); }
+  .breadcrumb { font-size: 0.8125rem; color: rgba(255,255,255,0.5); margin-bottom: 1rem; }
+  .breadcrumb a { color: rgba(255,255,255,0.5); }
+
+  .filter-bar {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    justify-content: center; margin-bottom: 2.5rem;
+  }
+  .filter-pill {
+    padding: 0.5rem 1.25rem; border-radius: var(--radius-full);
+    border: 2px solid var(--gray-200); background: var(--white);
+    font-weight: 500; font-size: 0.875rem; color: var(--gray-600);
+    transition: all 0.25s ease;
+  }
+  .filter-pill:hover, .filter-pill.active {
+    border-color: var(--primary); background: var(--primary); color: #fff;
+  }
+
+  .venue-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .venue-detail-card { display: grid; grid-template-columns: 360px 1fr; overflow: hidden; }
+  .vd-img { position: relative; }
+  .vd-img img { width: 100%; height: 100%; object-fit: cover; }
+  .vd-badge {
+    position: absolute; top: 1rem; left: 1rem;
+    padding: 0.25rem 0.75rem; background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(8px); border-radius: var(--radius-full);
+    font-size: 0.6875rem; font-weight: 600; color: var(--primary);
+  }
+  .vd-rating {
+    position: absolute; bottom: 1rem; left: 1rem;
+    display: flex; align-items: center; gap: 0.375rem;
+    padding: 0.375rem 0.75rem; background: rgba(255,255,255,0.95);
+    border-radius: var(--radius-full); font-weight: 600; font-size: 0.8125rem;
+    box-shadow: var(--shadow-md);
+  }
+  .vd-rating span { color: var(--gray-400); font-weight: 400; }
+
+  .vd-body { padding: 1.75rem; display: flex; flex-direction: column; }
+  .vd-addr { display: flex; align-items: center; gap: 0.375rem; font-size: 0.875rem; color: var(--gray-500); margin-bottom: 1rem; }
+  .vd-meta { display: flex; gap: 1.5rem; font-size: 0.875rem; color: var(--gray-400); margin-bottom: 1rem; }
+  .vd-features { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.25rem; }
+  .vd-tag {
+    padding: 0.3rem 0.75rem; background: var(--primary-50); color: var(--primary);
+    border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 500;
+  }
+  .vd-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--gray-100);
+  }
+  .vd-price { font-size: 0.9375rem; color: var(--gray-500); }
+  .vd-price strong { color: var(--primary); font-family: var(--font-display); font-size: 1.25rem; }
+
+  @media (max-width: 900px) { .venue-detail-card { grid-template-columns: 1fr; } .vd-img { aspect-ratio: 16/9; } }
+</style>
+
+<script>
+  const pills = document.querySelectorAll('.filter-pill');
+  const cards = document.querySelectorAll('.venue-detail-card');
+  pills.forEach(p => {
+    p.addEventListener('click', () => {
+      pills.forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      const f = p.dataset.filter;
+      cards.forEach(c => {
+        const t = c.dataset.type;
+        (f === 'all' || t.includes(f)) ? (c.style.display = 'grid') : (c.style.display = 'none');
+      });
+    });
+  });
+</script>

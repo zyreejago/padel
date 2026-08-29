@@ -1,0 +1,459 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import VenuesPreview from '../components/VenuesPreview.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTA from '../components/CTA.astro';
+---
+
+<Layout title="Demo Padel - Booking Lapangan Padel Mudah & Cepat" description="Platform booking lapangan padel #1 di Indonesia. Pilih venue, pilih jam, bayar, main. Lebih dari 50 lapangan di Jakarta, BSD, PIK. Booking dalam 60 detik!">
+  <Hero />
+
+  <!-- WE BELIEVE -->
+  <section class="believe-section">
+    <div class="container believe-grid">
+      <div class="believe-left">
+        <span class="believe-heading">KAMI YAKIN SETIAP ORANG BERHAK MERASAKAN SERUNYA MEMUKUL SHOT YAHUD DI PADEL.</span>
+      </div>
+      <div class="believe-right">
+        <p class="believe-text">Klub padel mandiri pertama di Jakarta, berdiri sejak 2017. Misi kami sederhana: bikin padel bisa diakses siapa aja, kapan aja, di mana aja.</p>
+        <p class="believe-text">Kami hadirin pengalaman padel baru yang seru di Jakarta. Lapangan indoor premium dengan langit-langit tinggi dan permukaan hijau vibrant — tempat di mana semangat dan gaya bertemu. Naikin level main kamu dan rasain sensasi yang beda dari yang lain.</p>
+        <a href="/tentang" class="believe-btn">Selengkapnya</a>
+      </div>
+    </div>
+    <div class="container believe-image-wrapper">
+      <div class="believe-hero-img" style="background-image: url('/images/padel-3.webp')"></div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section how-section" id="cara-kerja">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-tag">Cara Kerja</span>
+        <h2>GAMPANG<br />BANGET</h2>
+        <p>4 langkah simpel buat main padel hari ini.</p>
+      </header>
+      <div class="how-grid">
+        <div class="how-card">
+          <div class="how-num">01</div>
+          <h3>PILIH VENUE</h3>
+          <p>Cek daftar venue terdekat. Filter berdasarkan lokasi, harga, atau fasilitas.</p>
+        </div>
+        <div class="how-connector">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="how-card">
+          <div class="how-num">02</div>
+          <h3>PILIH JAM</h3>
+          <p>Lihat jadwal kosong real-time. Pilih jam main yang kamu mau.</p>
+        </div>
+        <div class="how-connector">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="how-card">
+          <div class="how-num">03</div>
+          <h3>BAYAR</h3>
+          <p>Transfer bank atau QRIS. Upload bukti bayar. Harga transparan, no biaya tersembunyi.</p>
+        </div>
+        <div class="how-connector">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </div>
+        <div class="how-card">
+          <div class="how-num">04</div>
+          <h3>MAIN!</h3>
+          <p>Konfirmasi via WhatsApp. Dateng, main, selesai. Gampang kan?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Features />
+
+  <!-- WHAT WE OFFER - CAROUSEL -->
+  <section class="svc-carousel-section" id="layanan">
+    <div class="svc-carousel-header">
+      <div class="container svc-carousel-header-inner">
+        <div class="svc-carousel-title">
+          <span class="svc-carousel-heading">WHAT WE<br />OFFER</span>
+          <a href="/layanan" class="btn btn-accent btn-sm svc-dl-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            LIHAT SEMUA LAYANAN
+          </a>
+        </div>
+        <p class="svc-carousel-desc">Kami menyediakan layanan lengkap untuk kebutuhan padel kamu. Dari sewa lapangan, coaching, sampai turnamen.</p>
+      </div>
+    </div>
+
+    <div class="svc-carousel-track-wrapper">
+      <div class="svc-carousel-track" id="svcCarousel">
+        {[
+          { title: 'SEWA LAPANGAN', img: '/images/padel-1.jpeg', price: 'Rp 150.000/jam', popular: true },
+          { title: 'SEWA ALAT', img: '/images/padel-2.jpeg', price: 'Rp 35.000/paket', popular: false },
+          { title: 'COACHING PRIBADI', img: '/images/padel-3.webp', price: 'Rp 300.000/sesi', popular: true },
+          { title: 'EVENT & TURNAMEN', img: '/images/padel-1.jpeg', price: 'Rp 5.000.000/event', popular: false },
+          { title: 'FOOD & BEVERAGE', img: '/images/padel-2.jpeg', price: 'Rp 25.000/item', popular: false },
+        ].map((s) => (
+          <div class="svc-slide">
+            <a href="/booking" class="svc-slide-book">Book Now ↗</a>
+            <a href="/layanan" class="svc-slide-card" style={`background-image: url(${s.img})`}>
+              <div class="svc-slide-overlay"></div>
+              <div class="svc-slide-content">
+                <h3>{s.title}</h3>
+                <span class="svc-slide-price">{s.price}</span>
+              </div>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="svc-carousel-nav">
+      <button class="svc-nav-btn" id="svcPrev" aria-label="Sebelumnya">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <div class="svc-dots" id="svcDots">
+        <button class="svc-dot active" data-i="0"></button>
+        <button class="svc-dot" data-i="1"></button>
+        <button class="svc-dot" data-i="2"></button>
+        <button class="svc-dot" data-i="3"></button>
+        <button class="svc-dot" data-i="4"></button>
+      </div>
+      <button class="svc-nav-btn" id="svcNext" aria-label="Selanjutnya">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <VenuesPreview />
+
+  <!-- STATS -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-num">50+</span>
+          <span class="stat-label">Lapangan</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">15K+</span>
+          <span class="stat-label">Pemain Aktif</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">500+</span>
+          <span class="stat-label">Event Terlaksana</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">4.8</span>
+          <span class="stat-label">Rating Google</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="section partners-section">
+    <div class="container">
+      <header class="section-header">
+        <span class="section-tag">Dipercaya Oleh</span>
+        <h2>PARTNER KAMI</h2>
+      </header>
+      <div class="partners-grid">
+        <div class="partner-logo">
+          <svg viewBox="0 0 120 40" fill="var(--gray-300)"><text x="10" y="28" font-size="16" font-weight="700" font-family="sans-serif">PEFINDO</text></svg>
+        </div>
+        <div class="partner-logo">
+          <svg viewBox="0 0 120 40" fill="var(--gray-300)"><text x="10" y="28" font-size="16" font-weight="700" font-family="sans-serif">BANK BCA</text></svg>
+        </div>
+        <div class="partner-logo">
+          <svg viewBox="0 0 120 40" fill="var(--gray-300)"><text x="10" y="28" font-size="16" font-weight="700" font-family="sans-serif">MANDIRI</text></svg>
+        </div>
+        <div class="partner-logo">
+          <svg viewBox="0 0 120 40" fill="var(--gray-300)"><text x="10" y="28" font-size="16" font-weight="700" font-family="sans-serif">GRAB</text></svg>
+        </div>
+        <div class="partner-logo">
+          <svg viewBox="0 0 120 40" fill="var(--gray-300)"><text x="10" y="28" font-size="16" font-weight="700" font-family="sans-serif">GOJEK</text></svg>
+        </div>
+        <div class="partner-logo">
+          <svg viewBox="0 0 120 40" fill="var(--gray-300)"><text x="10" y="28" font-size="16" font-weight="700" font-family="sans-serif">NIKE</text></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Testimonials />
+  <CTA />
+</Layout>
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero entrance
+  const heroEls = document.querySelectorAll('[data-anim="hero"]');
+  gsap.set(heroEls, { opacity: 0, y: 40 });
+  gsap.to(heroEls, {
+    opacity: 1, y: 0,
+    duration: 0.9, stagger: 0.12,
+    ease: 'power3.out',
+    delay: 0.3,
+  });
+
+  // How it works
+  gsap.from('.how-card', {
+    y: 60, opacity: 0, duration: 0.7,
+    stagger: 0.15, ease: 'power3.out',
+    scrollTrigger: { trigger: '.how-grid', start: 'top 80%' },
+  });
+
+  // Features
+  gsap.from('.feature-card', {
+    y: 60, opacity: 0, duration: 0.7,
+    stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.features-grid', start: 'top 80%' },
+  });
+
+  // Services carousel
+  gsap.from('.svc-slide', {
+    y: 50, opacity: 0, duration: 0.6,
+    stagger: 0.08, ease: 'power3.out',
+    scrollTrigger: { trigger: '.svc-carousel-track-wrapper', start: 'top 80%' },
+  });
+
+  // Venues
+  gsap.from('.venue-card', {
+    y: 50, opacity: 0, duration: 0.6,
+    stagger: 0.08, ease: 'power3.out',
+    scrollTrigger: { trigger: '.venue-grid', start: 'top 80%' },
+  });
+
+  // Stats
+  gsap.from('.stat-item', {
+    y: 40, opacity: 0, duration: 0.6,
+    stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.stats-grid', start: 'top 85%' },
+  });
+
+  // Section headers
+  gsap.utils.toArray('.section-header').forEach((h) => {
+    gsap.from(h, {
+      y: 30, opacity: 0, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: h, start: 'top 85%' },
+    });
+  });
+
+  // CTA
+  gsap.from('.cta-inner > *', {
+    y: 40, opacity: 0, duration: 0.7,
+    stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.cta-section', start: 'top 80%' },
+  });
+</script>
+
+<style>
+  /* HOW IT WORKS */
+  .how-section { background: var(--cream); }
+  .how-grid {
+    display: flex; align-items: flex-start; justify-content: center;
+    gap: 0; flex-wrap: wrap;
+  }
+  .how-card {
+    text-align: center; padding: 2rem 1.5rem;
+    flex: 1; min-width: 200px; max-width: 260px;
+  }
+  .how-num {
+    font-size: 3rem; font-weight: 900; color: var(--primary);
+    opacity: 0.15; line-height: 1; margin-bottom: 0.75rem;
+    letter-spacing: -0.05em;
+  }
+  .how-card h3 {
+    font-size: 1rem; margin-bottom: 0.5rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .how-card p { font-size: 0.875rem; color: var(--gray-500); line-height: 1.7; }
+  .how-connector {
+    display: flex; align-items: center; padding-top: 2.5rem;
+    color: var(--gray-300);
+  }
+
+  /* SERVICES CAROUSEL */
+  .svc-carousel-section { padding: clamp(4rem, 8vw, 6rem) 0 0; background: var(--cream); overflow: hidden; }
+  .svc-carousel-header { margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .svc-carousel-header-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .svc-carousel-title { display: flex; flex-direction: column; gap: 1rem; }
+  .svc-carousel-heading {
+    font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 900; text-transform: uppercase; line-height: 0.95;
+    letter-spacing: -0.03em; color: var(--dark);
+  }
+  .svc-dl-btn { width: fit-content; }
+  .svc-carousel-desc { max-width: 400px; font-size: 1rem; color: var(--gray-500); line-height: 1.7; padding-top: 0.5rem; }
+
+  .svc-carousel-track-wrapper { overflow: hidden; padding: 0 clamp(1rem, 4vw, 2rem); }
+  .svc-carousel-track {
+    display: flex; gap: 1.5rem;
+    overflow-x: auto; scroll-snap-type: x mandatory;
+    scrollbar-width: none; -ms-overflow-style: none;
+    padding-bottom: 1rem;
+  }
+  .svc-carousel-track::-webkit-scrollbar { display: none; }
+
+  .svc-slide {
+    flex: 0 0 clamp(300px, 40vw, 480px);
+    scroll-snap-align: start;
+    position: relative; height: 350px;
+  }
+  .svc-slide-book {
+    position: absolute; top: 1rem; left: 1rem; z-index: 10;
+    padding: 0.375rem 1rem;
+    background: var(--accent); color: var(--dark);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    transition: all 0.3s ease;
+  }
+  .svc-slide-book:hover { transform: scale(1.05); }
+  .svc-slide-card {
+    display: flex; align-items: flex-end;
+    width: 100%; height: 100%;
+    border-radius: 22px; overflow: hidden;
+    background-size: cover; background-position: center;
+    text-decoration: none; position: relative;
+    padding: 1.25rem; transition: transform 0.4s var(--ease-out-expo);
+  }
+  .svc-slide-card:hover { transform: scale(1.02); }
+  .svc-slide-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+    border-radius: 22px;
+  }
+  .svc-slide-content { position: relative; z-index: 2; }
+  .svc-slide-content h3 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 900; color: #fff; text-transform: uppercase;
+    letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 0.25rem;
+  }
+  .svc-slide-price {
+    font-size: 0.8125rem; color: var(--accent); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+
+  .svc-carousel-nav {
+    display: flex; align-items: center; justify-content: center;
+    gap: 1rem; margin-top: 2rem; padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
+  .svc-nav-btn {
+    width: 48px; height: 48px; border-radius: 50%;
+    border: 2px solid var(--gray-300); background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray-600); transition: all 0.3s ease;
+  }
+  .svc-nav-btn:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
+  .svc-dots { display: flex; gap: 0.5rem; }
+  .svc-dot {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gray-300); border: none;
+    transition: all 0.3s ease;
+  }
+  .svc-dot.active { background: var(--primary); transform: scale(1.4); }
+
+  /* STATS */
+  .stats-section {
+    background: var(--primary-dark); padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+  .stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem; text-align: center;
+  }
+  .stat-item { display: flex; flex-direction: column; }
+  .stat-num {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 900; color: #fff; line-height: 1;
+    letter-spacing: -0.03em;
+  }
+  .stat-label {
+    font-size: 0.8125rem; color: rgba(255,255,255,0.4);
+    margin-top: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em;
+    font-weight: 600;
+  }
+
+  /* PARTNERS */
+  .partners-section { background: var(--white); }
+  .partners-grid {
+    display: flex; align-items: center; justify-content: center;
+    gap: clamp(2rem, 5vw, 4rem); flex-wrap: wrap;
+    opacity: 0.4; transition: opacity 0.3s;
+  }
+  .partners-grid:hover { opacity: 0.6; }
+  .partner-logo { flex-shrink: 0; }
+  .partner-logo svg { width: 120px; height: 40px; }
+
+  /* WE BELIEVE */
+  .believe-section { padding: clamp(3rem, 6vw, 5rem) 0 0; background: var(--white); }
+  .believe-grid { display: grid; grid-template-columns: 5fr 7fr; gap: clamp(2rem, 4vw, 4rem); align-items: start; margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .believe-heading {
+    font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900; text-transform: uppercase; line-height: 1;
+    letter-spacing: -0.03em; color: var(--primary); display: block;
+  }
+  .believe-text { font-size: clamp(0.9375rem, 1.5vw, 1.0625rem); color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem; }
+  .believe-text:last-of-type { margin-bottom: 1.5rem; }
+  .believe-btn {
+    display: inline-block; padding: 0.625rem 2rem;
+    background: var(--primary); color: #fff; border-radius: 999px;
+    font-weight: 600; font-size: 0.9375rem; text-transform: uppercase;
+    letter-spacing: 0.04em; transition: all 0.3s ease;
+  }
+  .believe-btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
+  .believe-image-wrapper { position: relative; }
+  .believe-hero-img {
+    width: 100%; height: 400px; border-radius: var(--radius-xl);
+    background-size: cover; background-position: center;
+  }
+  @media (min-width: 768px) {
+    .believe-hero-img { height: 500px; }
+  }
+  @media (max-width: 768px) {
+    .believe-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  @media (max-width: 768px) {
+    .how-grid { flex-direction: column; align-items: center; }
+    .how-connector { transform: rotate(90deg); padding-top: 0; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .svc-slide { height: 280px; }
+  }
+</style>
+
+<script is:inline>
+  // Services carousel
+  const svcTrack = document.getElementById('svcCarousel');
+  const svcDots = document.querySelectorAll('.svc-dot');
+  const svcPrev = document.getElementById('svcPrev');
+  const svcNext = document.getElementById('svcNext');
+  let svcIdx = 0;
+  const svcTotal = 5;
+
+  function svcGo(i) {
+    if (!svcTrack) return;
+    svcIdx = Math.max(0, Math.min(i, svcTotal - 1));
+    const slide = svcTrack.querySelector('.svc-slide');
+    if (!slide) return;
+    const w = slide.offsetWidth + 24;
+    svcTrack.scrollTo({ left: svcIdx * w, behavior: 'smooth' });
+    svcDots.forEach((d, j) => d.classList.toggle('active', j === svcIdx));
+  }
+
+  svcPrev?.addEventListener('click', () => svcGo(svcIdx - 1));
+  svcNext?.addEventListener('click', () => svcGo(svcIdx + 1));
+  svcDots.forEach(d => d.addEventListener('click', () => svcGo(+d.dataset.i)));
+
+  let svcAuto = setInterval(() => svcGo(svcIdx >= svcTotal - 1 ? 0 : svcIdx + 1), 4000);
+  svcTrack?.addEventListener('mouseenter', () => clearInterval(svcAuto));
+  svcTrack?.addEventListener('mouseleave', () => {
+    svcAuto = setInterval(() => svcGo(svcIdx >= svcTotal - 1 ? 0 : svcIdx + 1), 4000);
+  });
+</script>

@@ -1,0 +1,1138 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { venues } from '../data/content.ts';
+---
+
+<Layout title="Booking Lapangan Padel - Demo Padel" description="Booking lapangan padel mudah & cepat. Pilih venue, tanggal, jam, bayar transfer/QRIS, konfirmasi langsung ke WhatsApp.">
+  <section class="booking-hero">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Beranda</a>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="9 18 15 12 9 6"/></svg>
+        <span aria-current="page">Booking</span>
+      </nav>
+      <h1>BOOKING<br />LAPANGAN</h1>
+      <p>Pilih venue, tanggal, dan jam. Proses booking cuma butuh 60 detik.</p>
+    </div>
+  </section>
+
+  <section class="section bg-white" id="booking-form">
+    <div class="container">
+      <div class="step-indicator" id="stepIndicator" role="navigation" aria-label="Langkah booking">
+        <div class="step" data-step="1">
+          <div class="step-number">1</div>
+          <span class="step-label">Venue</span>
+        </div>
+        <div class="step-line" data-step="1"></div>
+        <div class="step" data-step="2">
+          <div class="step-number">2</div>
+          <span class="step-label">Tanggal & Jam</span>
+        </div>
+        <div class="step-line" data-step="2"></div>
+        <div class="step" data-step="3">
+          <div class="step-number">3</div>
+          <span class="step-label">Data Pemain</span>
+        </div>
+        <div class="step-line" data-step="3"></div>
+        <div class="step" data-step="4">
+          <div class="step-number">4</div>
+          <span class="step-label">Pembayaran</span>
+        </div>
+        <div class="step-line" data-step="4"></div>
+        <div class="step" data-step="5">
+          <div class="step-number">5</div>
+          <span class="step-label">Selesai</span>
+        </div>
+      </div>
+
+      <div class="booking-content">
+        <div class="booking-main">
+          <div class="booking-step active" id="step-1" data-step="1" role="tabpanel" aria-labelledby="step1-title">
+            <h2 id="step1-title">PILIH VENUE</h2>
+            <div class="venue-grid" role="radiogroup" aria-label="Pilih venue">
+              {venues.map((venue, index) => (
+                <label class="venue-option" tabindex="0" role="radio" aria-checked="false" data-venue-id={venue.id}>
+                  <input type="radio" name="venue" value={venue.id} hidden />
+                  <div class="venue-option-image">
+                    <img src={venue.image} alt="" loading="lazy" />
+                    <span class="venue-type">{venue.type}</span>
+                    <div class="venue-option-overlay"></div>
+                  </div>
+                  <div class="venue-option-info">
+                    <h3>{venue.name}</h3>
+                    <p class="venue-address">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      {venue.address.split(',').slice(0, 2).join(', ')}
+                    </p>
+                    <div class="venue-meta">
+                      <span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        {venue.courts} Lapangan
+                      </span>
+                      <span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        {venue.hours}
+                      </span>
+                    </div>
+                    <div class="venue-option-bottom">
+                      <div class="venue-option-price">
+                        <span>Mulai</span>
+                        <strong>Rp {venue.price}/jam</strong>
+                      </div>
+                      <div class="venue-radio">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+                      </div>
+                    </div>
+                  </div>
+                </label>
+              ))}
+            </div>
+            <div class="step-navigation">
+              <button type="button" class="btn btn-primary btn-lg next-step" disabled>Lanjut: Pilih Tanggal & Jam <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            </div>
+          </div>
+
+          <div class="booking-step" id="step-2" data-step="2" role="tabpanel" aria-labelledby="step2-title" hidden>
+            <h2 id="step2-title">PILIH TANGGAL & JAM</h2>
+            <p style="color:var(--gray-500);margin-bottom:1rem;">Klik tombol di bawah untuk memilih tanggal dan jam main.</p>
+            <div class="step-navigation flex-between">
+              <button type="button" class="btn btn-ghost prev-step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="transform: rotate(180deg);"><polyline points="9 18 15 12 9 6"/></svg> Kembali</button>
+              <button type="button" class="btn btn-primary btn-lg" id="openDateTimeModal">Pilih Tanggal & Jam <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></button>
+            </div>
+          </div>
+
+          <div class="booking-step" id="step-3" data-step="3" role="tabpanel" aria-labelledby="step3-title" hidden>
+            <h2 id="step3-title">DATA PEMAIN</h2>
+            <form id="playerForm" class="player-form" novalidate>
+              <div class="form-grid">
+                <div class="input-group">
+                  <label class="input-label" for="playerName">Nama Lengkap <span class="text-error">*</span></label>
+                  <input type="text" id="playerName" name="playerName" class="input-field" placeholder="Nama lengkap kamu" required autocomplete="name" />
+                  <span class="input-error" id="playerNameError"></span>
+                </div>
+                <div class="input-group">
+                  <label class="input-label" for="playerPhone">Nomor WhatsApp <span class="text-error">*</span></label>
+                  <input type="tel" id="playerPhone" name="playerPhone" class="input-field" placeholder="08xxxxxxxxxx" required autocomplete="tel" />
+                  <span class="input-error" id="playerPhoneError"></span>
+                </div>
+                <div class="input-group">
+                  <label class="input-label" for="playerEmail">Email</label>
+                  <input type="email" id="playerEmail" name="playerEmail" class="input-field" placeholder="email@kamu.com" autocomplete="email" />
+                </div>
+                <div class="input-group">
+                  <label class="input-label" for="playerCount">Jumlah Pemain</label>
+                  <select id="playerCount" name="playerCount" class="input-field">
+                    <option value="2">2 Orang (Singles)</option>
+                    <option value="4" selected>4 Orang (Doubles)</option>
+                    <option value="6">6 Orang (Rotasi)</option>
+                    <option value="8">8 Orang (Turnamen Mini)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="input-group">
+                <label class="input-label" for="specialRequest">Catatan Khusus (Opsional)</label>
+                <textarea id="specialRequest" name="specialRequest" class="input-field" rows="3" placeholder="Contoh: Butuh coach, request lapangan tertentu, dll"></textarea>
+              </div>
+              <div class="step-navigation flex-between">
+                <button type="button" class="btn btn-ghost prev-step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="transform: rotate(180deg);"><polyline points="9 18 15 12 9 6"/></svg> Kembali</button>
+                <button type="submit" class="btn btn-primary btn-lg next-step">Lanjut: Pembayaran <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+              </div>
+            </form>
+          </div>
+
+          <div class="booking-step" id="step-4" data-step="4" role="tabpanel" aria-labelledby="step4-title" hidden>
+            <h2 id="step4-title">PEMBAYARAN</h2>
+            <div class="payment-summary card">
+              <h3>Ringkasan Booking</h3>
+              <div id="bookingSummary"></div>
+              <div class="summary-total">
+                <span>Total Bayar</span>
+                <strong id="totalAmount">Rp 0</strong>
+              </div>
+            </div>
+
+            <div class="payment-methods">
+              <h3>Metode Pembayaran</h3>
+              <div class="payment-options" role="radiogroup" aria-label="Metode pembayaran">
+                <label class="payment-option" tabindex="0" role="radio" aria-checked="false" data-method="transfer">
+                  <input type="radio" name="paymentMethod" value="transfer" hidden checked />
+                  <div class="payment-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                  </div>
+                  <div class="payment-info">
+                    <strong>Transfer Bank</strong>
+                    <span>BCA / Mandiri / BRI / BNI</span>
+                  </div>
+                  <div class="payment-radio"></div>
+                </label>
+                <label class="payment-option" tabindex="0" role="radio" aria-checked="false" data-method="qris">
+                  <input type="radio" name="paymentMethod" value="qris" hidden />
+                  <div class="payment-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="5" height="5"/><rect x="16" y="16" width="3" height="3"/><rect x="8" y="8" width="3" height="3"/><rect x="12" y="12" width="2" height="2"/></svg>
+                  </div>
+                  <div class="payment-info">
+                    <strong>QRIS</strong>
+                    <span>Scan & bayar lewat e-wallet</span>
+                  </div>
+                  <div class="payment-radio"></div>
+                </label>
+              </div>
+            </div>
+
+            <div class="payment-details" id="transferDetails">
+              <h4>Detail Transfer Bank</h4>
+              <div class="bank-account">
+                <div class="bank-info">
+                  <strong>Bank BCA</strong>
+                  <span>Atas Nama: PT Demo Padel Indonesia</span>
+                  <span class="account-number">1234567890</span>
+                </div>
+                <button class="btn btn-ghost btn-sm copy-account" data-account="1234567890">Salin</button>
+              </div>
+              <div class="bank-account">
+                <div class="bank-info">
+                  <strong>Bank Mandiri</strong>
+                  <span>Atas Nama: PT Demo Padel Indonesia</span>
+                  <span class="account-number">0987654321</span>
+                </div>
+                <button class="btn btn-ghost btn-sm copy-account" data-account="0987654321">Salin</button>
+              </div>
+            </div>
+
+            <div class="payment-details" id="qrisDetails" hidden>
+              <h4>Bayar dengan QRIS</h4>
+              <div class="qris-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="64" height="64" style="color: var(--gray-400);"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="5" height="5"/><rect x="16" y="16" width="3" height="3"/><rect x="8" y="8" width="3" height="3"/><rect x="12" y="12" width="2" height="2"/></svg>
+                <p>QR Code akan muncul di sini</p>
+                <span class="text-caption">Demo: QRIS statis untuk semua bank & e-wallet</span>
+              </div>
+            </div>
+
+            <div class="upload-proof">
+              <h4>Upload Bukti Pembayaran</h4>
+              <div class="file-upload" id="fileUpload">
+                <input type="file" id="paymentProof" name="paymentProof" accept="image/*" hidden />
+                <div class="upload-zone" id="uploadZone">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="32" height="32" style="color: var(--primary); margin-bottom: 0.75rem;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  <p>Klik atau tarik bukti transfer di sini</p>
+                  <span class="text-caption">Format: JPG, PNG. Max 5MB</span>
+                </div>
+                <div class="file-preview" id="filePreview" hidden>
+                  <img id="previewImage" src="" alt="Preview bukti bayar" />
+                  <button type="button" class="remove-file" aria-label="Hapus file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+                </div>
+              </div>
+              <p id="proofError" class="input-error" hidden>Bukti pembayaran wajib diupload</p>
+            </div>
+
+            <div class="step-navigation flex-between">
+              <button type="button" class="btn btn-ghost prev-step"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18" style="transform: rotate(180deg);"><polyline points="9 18 15 12 9 6"/></svg> Kembali</button>
+              <button type="button" class="btn btn-accent btn-lg next-step" id="submitBooking">Konfirmasi & Kirim ke WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg></button>
+            </div>
+          </div>
+
+          <div class="booking-step" id="step-5" data-step="5" role="tabpanel" aria-labelledby="step5-title" hidden>
+            <div class="confirmation-success text-center">
+              <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="80" height="80"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
+              <h2>BOOKING BERHASIL!</h2>
+              <p style="color: var(--gray-500); margin: 1rem 0 2rem;">ID booking kamu telah dibuat. Silakan konfirmasi pembayaran via WhatsApp.</p>
+
+              <div class="booking-id-card card">
+                <h3>Detail Booking</h3>
+                <div id="confirmationDetails"></div>
+                <div class="booking-id">
+                  <span class="text-caption">ID Booking</span>
+                  <strong id="bookingId"></strong>
+                </div>
+              </div>
+
+              <a id="whatsappConfirmBtn" href="#" target="_blank" rel="noopener" class="btn btn-accent btn-lg wa-confirm-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.58 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Konfirmasi via WhatsApp
+              </a>
+
+              <button type="button" class="btn btn-outline" id="newBookingBtn">Booking Lagi</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="booking-sidebar" aria-label="Ringkasan booking">
+          <div class="sidebar-card card sticky-sidebar">
+            <h3>RINGKASAN</h3>
+            <div id="sidebarSummary">
+              <p class="text-center" style="color: var(--gray-400); padding: 2rem;">Belum ada venue dipilih</p>
+            </div>
+            <div class="sidebar-divider"></div>
+            <div class="price-breakdown" id="priceBreakdown" hidden>
+              <div class="price-row"><span>Harga/jam</span><span id="sidebarPrice">Rp 0</span></div>
+              <div class="price-row"><span>Durasi</span><span id="sidebarDuration">0 jam</span></div>
+              <div class="price-row total"><span>Total</span><strong id="sidebarTotal">Rp 0</strong></div>
+            </div>
+            <div class="sidebar-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Gak ada biaya tersembunyi. Harga final = harga yang tertera.</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- DATE TIME MODAL -->
+  <div class="dt-modal-overlay" id="dtModalOverlay" hidden>
+    <div class="dt-modal">
+      <div class="dt-modal-header">
+        <h2>PILIH TANGGAL & JAM</h2>
+        <button type="button" class="dt-modal-close" id="dtModalClose" aria-label="Tutup">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="dt-modal-body">
+        <div class="dt-modal-section">
+          <label class="input-label">Tanggal Main</label>
+          <div class="date-picker-row" id="datePickerRow">
+            <button type="button" class="date-arrow" id="datePrev" aria-label="Sebelumnya">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="date-chips" id="dateChips"></div>
+            <button type="button" class="date-arrow" id="dateNext" aria-label="Selanjutnya">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+          <input type="date" id="bookingDate" class="input-field" min={new Date().toISOString().split('T')[0]} required hidden />
+        </div>
+
+        <div class="dt-modal-section">
+          <label class="input-label">Pilih Jam</label>
+          <div class="time-grid" id="timeSlots" role="radiogroup" aria-label="Pilih jam main">
+            <p class="text-center" style="color: var(--gray-400); padding: 2rem; grid-column: 1/-1;">Pilih tanggal dulu untuk melihat jam yang tersedia</p>
+          </div>
+          <div class="time-legend">
+            <span class="legend-item"><span class="legend-dot available"></span> Tersedia</span>
+            <span class="legend-item"><span class="legend-dot booked"></span> Penuh</span>
+            <span class="legend-item"><span class="legend-dot selected"></span> Dipilih</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dt-modal-footer">
+        <button type="button" class="btn btn-ghost" id="dtModalCancel">Batal</button>
+        <button type="button" class="btn btn-primary btn-lg" id="dtModalConfirm" disabled>
+          Konfirmasi
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style is:global>
+  .booking-hero {
+    padding: calc(var(--header-h) + clamp(2rem,5vw,3rem)) 0 clamp(2rem,4vw,2.5rem);
+    background: var(--primary-dark);
+    color: #fff;
+  }
+  .booking-hero .container { max-width: 800px; }
+  .breadcrumb { display: flex; align-items: center; gap: 0.375rem; font-size: 0.8125rem; color: rgba(255,255,255,0.45); margin-bottom: 1rem; }
+  .breadcrumb a { color: rgba(255,255,255,0.45); }
+  .breadcrumb a:hover { color: var(--accent); }
+  .booking-hero h1 { font-size: clamp(2.5rem,6vw,4rem); color: #fff; margin-bottom: 0.5rem; line-height: 1; letter-spacing: -0.03em; }
+  .booking-hero p { font-size: 1rem; color: rgba(255,255,255,0.6); }
+
+  /* STEP INDICATOR */
+  .step-indicator {
+    display: flex; align-items: center; justify-content: center;
+    gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap;
+  }
+  .step { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+  .step-number {
+    width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.9375rem;
+    background: var(--gray-100); color: var(--gray-400);
+    transition: all 0.4s var(--ease-out-expo);
+  }
+  .step.active .step-number {
+    background: var(--primary); color: #fff;
+    box-shadow: 0 6px 20px rgba(10,61,50,0.35);
+  }
+  .step.completed .step-number { background: var(--success); color: #fff; }
+  .step-label { font-size: 0.6875rem; font-weight: 700; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.06em; }
+  .step.active .step-label { color: var(--primary); }
+  .step-line { width: 52px; height: 2px; background: var(--gray-200); transition: background 0.3s; }
+  .step-line.completed { background: var(--success); }
+
+  /* LAYOUT */
+  .booking-content { display: grid; grid-template-columns: 1fr 360px; gap: 2rem; align-items: start; }
+  .booking-step { animation: stepIn 0.35s var(--ease-out-expo); }
+  @keyframes stepIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  .booking-step h2 { font-size: 1.5rem; margin-bottom: 1.5rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; }
+
+  /* VENUE CARDS */
+  .venue-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1rem; }
+  .venue-option {
+    position: relative; display: flex; flex-direction: column;
+    border: 2px solid var(--gray-200); border-radius: var(--radius-xl);
+    overflow: hidden; cursor: pointer;
+    transition: all 0.35s var(--ease-out-expo);
+    background: var(--white);
+  }
+  .venue-option:hover { border-color: var(--primary); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+  .venue-option:has(input:checked) {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(10,61,50,0.15), var(--shadow-lg);
+  }
+  .venue-option-image { position: relative; aspect-ratio: 16/10; overflow: hidden; }
+  .venue-option-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .venue-option:hover .venue-option-image img { transform: scale(1.05); }
+  .venue-option-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+  }
+  .venue-type {
+    position: absolute; top: 0.75rem; left: 0.75rem;
+    padding: 0.3rem 0.875rem; background: var(--accent);
+    border-radius: var(--radius-full);
+    font-size: 0.6875rem; font-weight: 800; color: var(--dark);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .venue-option-info { padding: 1.25rem; flex: 1; display: flex; flex-direction: column; }
+  .venue-option-info h3 { font-size: 1.0625rem; margin-bottom: 0.375rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; }
+  .venue-address { display: flex; align-items: center; gap: 0.375rem; font-size: 0.8125rem; color: var(--gray-500); margin-bottom: 0.5rem; }
+  .venue-meta { display: flex; gap: 1rem; font-size: 0.75rem; color: var(--gray-400); margin-bottom: 0.75rem; }
+  .venue-meta span { display: flex; align-items: center; gap: 0.25rem; }
+  .venue-option-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: auto; padding-top: 0.75rem;
+    border-top: 1px solid var(--gray-100);
+  }
+  .venue-option-price { display: flex; flex-direction: column; }
+  .venue-option-price span { font-size: 0.6875rem; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.04em; }
+  .venue-option-price strong { font-size: 1.125rem; color: var(--primary); font-weight: 800; }
+  .venue-radio {
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 2px solid var(--gray-200);
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s ease;
+  }
+  .venue-radio svg { width: 18px; height: 18px; stroke: transparent; transition: stroke 0.3s ease; }
+  .venue-option:has(input:checked) .venue-radio { border-color: var(--primary); background: var(--primary); }
+  .venue-option:has(input:checked) .venue-radio svg { stroke: #fff; }
+
+  /* DATE PICKER */
+  .date-picker-section { margin-bottom: 2rem; }
+  .date-picker-row {
+    display: flex; align-items: center; gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+  .date-arrow {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 2px solid var(--gray-200); background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray-500); flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+  .date-arrow:hover { border-color: var(--primary); color: var(--primary); }
+  .date-chips {
+    display: flex; gap: 0.5rem; overflow-x: auto;
+    scrollbar-width: none; -ms-overflow-style: none;
+    flex: 1; padding: 0.25rem 0;
+  }
+  .date-chips::-webkit-scrollbar { display: none; }
+  .date-chip {
+    flex: 0 0 auto; padding: 0.75rem 1rem;
+    border: 2px solid var(--gray-200); border-radius: var(--radius-lg);
+    background: var(--white); cursor: pointer;
+    text-align: center; min-width: 72px;
+    transition: all 0.25s ease;
+  }
+  .date-chip:hover { border-color: var(--primary); }
+  .date-chip.active {
+    border-color: var(--primary); background: var(--primary); color: #fff;
+  }
+  .date-chip-day {
+    display: block; font-size: 0.6875rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 0.25rem;
+    color: var(--gray-400);
+  }
+  .date-chip.active .date-chip-day { color: rgba(255,255,255,0.7); }
+  .date-chip-num {
+    display: block; font-size: 1.25rem; font-weight: 800;
+    line-height: 1; color: var(--dark);
+  }
+  .date-chip.active .date-chip-num { color: #fff; }
+  .date-chip-month {
+    display: block; font-size: 0.625rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    margin-top: 0.25rem; color: var(--gray-400);
+  }
+  .date-chip.active .date-chip-month { color: rgba(255,255,255,0.7); }
+  .date-chip.today { border-color: var(--accent); }
+  .date-chip.today .date-chip-num { color: var(--primary); }
+  .date-chip.today.active .date-chip-num { color: #fff; }
+
+  /* TIME SECTION */
+  .time-section { margin-bottom: 1.5rem; }
+  .time-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.625rem; margin-top: 0.75rem;
+  }
+  .time-slot {
+    position: relative; padding: 1rem 0.5rem;
+    border: 2px solid var(--gray-200); border-radius: var(--radius-md);
+    text-align: center; cursor: pointer;
+    transition: all 0.25s ease; font-weight: 700; font-size: 0.9375rem;
+    background: var(--white);
+  }
+  .time-slot:hover:not(.booked) { border-color: var(--primary); transform: translateY(-2px); }
+  .time-slot.selected {
+    border-color: var(--primary); background: var(--primary); color: #fff;
+    box-shadow: 0 4px 16px rgba(10,61,50,0.3);
+  }
+  .time-slot.booked {
+    opacity: 0.4; cursor: not-allowed;
+    background: var(--gray-100); color: var(--gray-400);
+    text-decoration: line-through;
+  }
+  .time-slot input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .time-slot-label {
+    display: block; font-size: 0.625rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    margin-top: 0.25rem; opacity: 0.6;
+  }
+  .time-legend {
+    display: flex; gap: 1.5rem; margin-top: 1rem;
+    padding-top: 1rem; border-top: 1px solid var(--gray-100);
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 0.375rem;
+    font-size: 0.75rem; color: var(--gray-400); font-weight: 500;
+  }
+  .legend-dot {
+    width: 12px; height: 12px; border-radius: 4px;
+    border: 2px solid var(--gray-300);
+  }
+  .legend-dot.available { border-color: var(--primary); background: var(--white); }
+  .legend-dot.booked { border-color: var(--gray-300); background: var(--gray-100); }
+  .legend-dot.selected { border-color: var(--primary); background: var(--primary); }
+
+  /* FORM */
+  .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.25rem; }
+  .form-grid .input-group:last-child { grid-column: span 2; }
+
+  /* PAYMENT */
+  .payment-summary { background: var(--cream); padding: 1.75rem; border-radius: var(--radius-xl); margin-bottom: 1.5rem; }
+  .payment-summary h3 { font-size: 0.875rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--gray-200); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 800; }
+  .summary-total { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--gray-200); margin-top: 0.75rem; }
+  .summary-total span { font-size: 0.9375rem; color: var(--gray-500); }
+  .summary-total strong { font-size: 1.5rem; color: var(--primary); font-weight: 800; letter-spacing: -0.02em; }
+
+  .payment-methods { margin-bottom: 1.5rem; }
+  .payment-methods h3 { font-size: 0.875rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 800; }
+  .payment-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  .payment-option {
+    position: relative; display: flex; align-items: center; gap: 1rem;
+    padding: 1.25rem; border: 2px solid var(--gray-200);
+    border-radius: var(--radius-xl); cursor: pointer;
+    transition: all 0.3s ease; background: var(--white);
+  }
+  .payment-option:hover { border-color: var(--primary); }
+  .payment-option:has(input:checked) { border-color: var(--primary); background: rgba(10,61,50,0.04); }
+  .payment-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--cream); display: flex; align-items: center; justify-content: center;
+    color: var(--primary); flex-shrink: 0;
+  }
+  .payment-icon svg { width: 24px; height: 24px; }
+  .payment-info strong { display: block; font-size: 0.9375rem; color: var(--dark); font-weight: 700; }
+  .payment-info span { font-size: 0.8125rem; color: var(--gray-500); }
+  .payment-radio {
+    width: 24px; height: 24px; border-radius: 50%;
+    border: 2px solid var(--gray-300); margin-left: auto; flex-shrink: 0;
+    transition: all 0.25s ease;
+  }
+  .payment-option:has(input:checked) .payment-radio { border-color: var(--primary); background: var(--primary); }
+  .payment-option:has(input:checked) .payment-radio::after { content: ''; display: block; width: 8px; height: 8px; border-radius: 50%; background: #fff; margin: 4px auto; }
+
+  .payment-details { margin-bottom: 1.5rem; padding: 1.5rem; background: var(--cream); border-radius: var(--radius-xl); }
+  .payment-details h4 { font-size: 0.875rem; margin-bottom: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; }
+  .bank-account {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem; background: var(--white); border-radius: var(--radius-lg);
+    margin-bottom: 0.625rem; transition: all 0.25s ease;
+  }
+  .bank-account:last-child { margin-bottom: 0; }
+  .bank-account:hover { box-shadow: var(--shadow-sm); transform: translateY(-1px); }
+  .bank-info { display: flex; flex-direction: column; gap: 2px; }
+  .bank-info strong { font-size: 0.9375rem; }
+  .bank-info span { font-size: 0.8125rem; color: var(--gray-500); }
+  .account-number { font-weight: 800; color: var(--primary) !important; font-size: 1.0625rem !important; }
+
+  .qris-placeholder {
+    text-align: center; padding: 2.5rem;
+    border: 2px dashed var(--gray-300); border-radius: var(--radius-xl);
+  }
+  .qris-placeholder p { font-weight: 600; margin-bottom: 0.375rem; }
+
+  .upload-zone {
+    border: 2px dashed var(--gray-300); border-radius: var(--radius-xl);
+    padding: 2.5rem; text-align: center; cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .upload-zone:hover, .upload-zone.dragover {
+    border-color: var(--primary); background: rgba(10,61,50,0.03);
+  }
+  .upload-zone p { font-weight: 600; margin-bottom: 0.375rem; }
+  [hidden] { display: none !important; }
+  .file-preview {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem; background: var(--cream); border-radius: var(--radius-lg);
+    margin-top: 1rem;
+  }
+  .file-preview img { width: 56px; height: 56px; object-fit: cover; border-radius: var(--radius-md); }
+  .remove-file {
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gray-400); transition: all 0.2s ease; margin-left: auto;
+  }
+  .remove-file:hover { background: var(--error); color: #fff; }
+
+  /* CONFIRMATION */
+  .confirmation-success { padding: 2rem; }
+  .success-icon { margin-bottom: 1.5rem; }
+  .confirmation-success h2 { margin-bottom: 0.5rem; font-size: 2rem; }
+  .booking-id-card { text-align: left; padding: 1.75rem; margin: 0 auto 2rem; max-width: 400px; }
+  .booking-id-card h3 { font-size: 0.875rem; margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid var(--gray-100); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 800; }
+  .confirmation-detail { display: flex; justify-content: space-between; padding: 0.375rem 0; font-size: 0.875rem; }
+  .confirmation-detail span:first-child { color: var(--gray-500); }
+  .confirmation-detail span:last-child { font-weight: 600; }
+  .booking-id { text-align: center; padding-top: 1rem; margin-top: 1rem; border-top: 1px solid var(--gray-100); }
+  .booking-id strong { font-size: 1.25rem; color: var(--primary); font-weight: 800; }
+  .wa-confirm-btn { width: 100%; max-width: 300px; margin: 0 auto; }
+  #newBookingBtn { width: 100%; max-width: 300px; margin: 1rem auto 0; }
+
+  /* SIDEBAR */
+  .sidebar-card {
+    position: sticky; top: calc(var(--header-h) + 1rem);
+    background: var(--white); border-radius: var(--radius-xl);
+    border: 1px solid var(--gray-100);
+    box-shadow: var(--shadow-md); padding: 1.5rem;
+    overflow: visible;
+  }
+  .sidebar-card h3 {
+    font-size: 0.8125rem; margin-bottom: 1rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--gray-100);
+    font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .sidebar-divider { height: 1px; background: var(--gray-100); margin: 1rem 0; }
+  .price-breakdown { display: flex; flex-direction: column; gap: 0.625rem; }
+  .price-row { display: flex; justify-content: space-between; font-size: 0.875rem; color: var(--gray-600); }
+  .price-row.total {
+    padding-top: 0.75rem; border-top: 1px solid var(--gray-200);
+    font-weight: 800; font-size: 1.25rem; color: var(--primary);
+    letter-spacing: -0.02em;
+  }
+  .sidebar-note {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; color: var(--gray-400);
+    margin-top: 1rem; padding-top: 1rem;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  /* NAVIGATION */
+  .step-navigation {
+    display: flex; justify-content: flex-end; gap: 0.75rem;
+    margin-top: 2rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--gray-100);
+  }
+  .step-navigation.flex-between { justify-content: space-between; }
+  .player-form .step-navigation { margin-top: 1.5rem; }
+
+  /* DATE TIME MODAL */
+  .dt-modal-overlay {
+    position: fixed; inset: 0; z-index: 9999;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    animation: dt-fade-in 0.25s ease;
+  }
+  .dt-modal-overlay[hidden] { display: none; }
+  @keyframes dt-fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+  .dt-modal {
+    background: var(--white); border-radius: 24px;
+    width: 100%; max-width: 640px; max-height: 90vh;
+    display: flex; flex-direction: column;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+    animation: dt-slide-up 0.3s var(--ease-out-expo);
+  }
+  @keyframes dt-slide-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  .dt-modal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 1.75rem; border-bottom: 1px solid var(--gray-100);
+  }
+  .dt-modal-header h2 {
+    font-size: 1.125rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .dt-modal-close {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: none; background: var(--gray-100);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--gray-500); transition: all 0.2s ease;
+  }
+  .dt-modal-close:hover { background: var(--gray-200); color: var(--dark); }
+
+  .dt-modal-body {
+    padding: 1.75rem; overflow-y: auto; flex: 1;
+  }
+  .dt-modal-section { margin-bottom: 1.5rem; }
+  .dt-modal-section:last-child { margin-bottom: 0; }
+
+  .dt-modal-footer {
+    display: flex; justify-content: flex-end; gap: 0.75rem;
+    padding: 1.25rem 1.75rem; border-top: 1px solid var(--gray-100);
+  }
+
+  @media (max-width: 640px) {
+    .dt-modal { max-height: 95vh; border-radius: 20px; }
+    .dt-modal-header { padding: 1.25rem 1.25rem; }
+    .dt-modal-body { padding: 1.25rem; }
+    .dt-modal-footer { padding: 1rem 1.25rem; }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .booking-content { grid-template-columns: 1fr; }
+    .booking-sidebar { order: -1; }
+    .sidebar-card { position: static; }
+    .venue-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 768px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .form-grid .input-group:last-child { grid-column: span 1; }
+    .payment-options { grid-template-columns: 1fr; }
+    .step-indicator { overflow-x: auto; padding-bottom: 0.5rem; flex-wrap: nowrap; }
+    .step-line { width: 32px; flex-shrink: 0; }
+    .step-label { font-size: 0.625rem; }
+  }
+</style>
+
+<script is:inline>
+  const venuesData = [{id:"venue-1",name:"Padel Arena Senayan",address:"Jl. Pintu Satu Senayan, Gelora, Tanah Abang, Jakarta Pusat",image:"/images/padel-1.jpeg",courts:4,type:"Indoor",hours:"06:00 - 23:00",price:"200.000",rating:4.8,reviews:124,features:["AC Central","Parkir Luas","Cafe & Lounge","Pro Shop"]},{id:"venue-2",name:"Green Padel BSD",address:"Green Office Park 6, BSD City, Tangerang Selatan",image:"/images/padel-2.jpeg",courts:6,type:"Outdoor",hours:"06:00 - 22:00",price:"150.000",rating:4.6,reviews:89,features:["View Green Area","Area BBQ","Musholla","Gazebo Istirahat"]},{id:"venue-3",name:"Urban Padel PIK",address:"Jl. Pantai Indah Kapuk, Penjaringan, Jakarta Utara",image:"/images/padel-3.webp",courts:3,type:"Indoor",hours:"07:00 - 23:00",price:"250.000",rating:4.9,reviews:67,features:["Premium Lighting","VIP Lounge","Personal Trainer","Locker Premium"]},{id:"venue-4",name:"Ciputra Padel Club",address:"Ciputra World 1, Jl. Prof. Dr. Satrio, Jakarta Selatan",image:"/images/padel-1.jpeg",courts:5,type:"Indoor + Outdoor",hours:"06:00 - 23:00",price:"180.000",rating:4.7,reviews:156,features:["Rooftop Court","Swimming Pool Access","Spa & Massage","Restaurant"]}];
+
+  const bookingState = {
+    venue: null, court: null, date: null, timeSlot: null, duration: 1,
+    playerName: '', playerPhone: '', playerEmail: '', playerCount: 4,
+    specialRequest: '', paymentMethod: 'transfer', paymentProof: null, bookingId: null
+  };
+
+  const steps = document.querySelectorAll('.booking-step');
+  const stepIndicators = document.querySelectorAll('.step');
+  const stepLines = document.querySelectorAll('.step-line');
+  const venueOptions = document.querySelectorAll('.venue-option');
+  const dateInput = document.getElementById('bookingDate');
+  const dateChipsContainer = document.getElementById('dateChips');
+  const timeSlotsContainer = document.getElementById('timeSlots');
+  const playerForm = document.getElementById('playerForm');
+  const paymentOptions = document.querySelectorAll('.payment-option');
+  const fileInput = document.getElementById('paymentProof');
+  const uploadZone = document.getElementById('uploadZone');
+  const filePreview = document.getElementById('filePreview');
+  const previewImage = document.getElementById('previewImage');
+  const proofError = document.getElementById('proofError');
+  const submitBtn = document.getElementById('submitBooking');
+  const newBookingBtn = document.getElementById('newBookingBtn');
+  const whatsappConfirmBtn = document.getElementById('whatsappConfirmBtn');
+
+  function generateTimeSlots() {
+    const slots = [];
+    for (let h = 6; h < 22; h++) {
+      const time = `${h.toString().padStart(2, '0')}:00`;
+      slots.push({ time, available: Math.random() > 0.2 });
+    }
+    return slots;
+  }
+
+  function renderDateChips() {
+    const days = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+    const today = new Date();
+    let html = '';
+    for (let i = 0; i < 14; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      const dateStr = d.toISOString().split('T')[0];
+      const isToday = i === 0;
+      html += `<button type="button" class="date-chip ${isToday ? 'today' : ''}" data-date="${dateStr}">
+        <span class="date-chip-day">${days[d.getDay()]}</span>
+        <span class="date-chip-num">${d.getDate()}</span>
+        <span class="date-chip-month">${months[d.getMonth()]}</span>
+      </button>`;
+    }
+    dateChipsContainer.innerHTML = html;
+
+    dateChipsContainer.querySelectorAll('.date-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        dateChipsContainer.querySelectorAll('.date-chip').forEach(c => c.classList.remove('active'));
+        chip.classList.add('active');
+        dateInput.value = chip.dataset.date;
+        bookingState.date = chip.dataset.date;
+        bookingState.timeSlot = null;
+        renderTimeSlots();
+        dtModalConfirm.disabled = true;
+        updateSidebar();
+      });
+    });
+  }
+
+  function renderTimeSlots() {
+    const slots = generateTimeSlots();
+    timeSlotsContainer.innerHTML = slots.map((slot, i) => `
+      <label class="time-slot ${slot.available ? '' : 'booked'}" tabindex="0" role="radio" aria-checked="false" data-time="${slot.time}">
+        <input type="radio" name="timeSlot" value="${slot.time}" ${!slot.available ? 'disabled' : ''} hidden />
+        ${slot.time}
+        ${!slot.available ? '<span class="time-slot-label">Penuh</span>' : '<span class="time-slot-label">Tersedia</span>'}
+      </label>
+    `).join('');
+
+    timeSlotsContainer.querySelectorAll('.time-slot:not(.booked)').forEach(el => {
+      el.addEventListener('click', () => selectTimeSlot(el.dataset.time, el));
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); el.click(); }
+      });
+    });
+  }
+
+  function updateStepIndicator(currentStep) {
+    stepIndicators.forEach((step, i) => {
+      const stepNum = i + 1;
+      step.classList.remove('active', 'completed');
+      if (stepNum < currentStep) step.classList.add('completed');
+      else if (stepNum === currentStep) step.classList.add('active');
+    });
+    stepLines.forEach((line, i) => {
+      line.classList.toggle('completed', i < currentStep - 1);
+    });
+  }
+
+  function showStep(stepNum) {
+    steps.forEach(s => {
+      s.hidden = parseInt(s.dataset.step) !== stepNum;
+      s.classList.toggle('active', parseInt(s.dataset.step) === stepNum);
+    });
+    updateStepIndicator(stepNum);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  venueOptions.forEach(opt => {
+    opt.addEventListener('click', () => selectVenue(opt.dataset.venueId, opt));
+    opt.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opt.click(); }
+    });
+  });
+
+  function selectVenue(venueId, element) {
+    const venue = venuesData.find(v => v.id === venueId);
+    if (!venue) return;
+    bookingState.venue = venue;
+    bookingState.court = null;
+    venueOptions.forEach(o => {
+      o.setAttribute('aria-checked', 'false');
+      o.querySelector('input').checked = false;
+    });
+    element.setAttribute('aria-checked', 'true');
+    element.querySelector('input').checked = true;
+    document.querySelector('#step-1 .next-step').disabled = false;
+    updateSidebar();
+  }
+
+  function selectTimeSlot(time, element) {
+    bookingState.timeSlot = time;
+    timeSlotsContainer.querySelectorAll('.time-slot').forEach(el => {
+      el.classList.remove('selected');
+      el.setAttribute('aria-checked', 'false');
+      el.querySelector('input').checked = false;
+    });
+    element.classList.add('selected');
+    element.setAttribute('aria-checked', 'true');
+    element.querySelector('input').checked = true;
+    dtModalConfirm.disabled = false;
+    updateSidebar();
+  }
+
+  playerForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (validatePlayerForm()) showStep(4);
+  });
+
+  function validatePlayerForm() {
+    let valid = true;
+    const name = document.getElementById('playerName');
+    const phone = document.getElementById('playerPhone');
+    const nameError = document.getElementById('playerNameError');
+    const phoneError = document.getElementById('playerPhoneError');
+
+    if (!name.value.trim()) {
+      name.classList.add('error');
+      nameError.textContent = 'Nama wajib diisi';
+      nameError.style.display = 'block';
+      valid = false;
+    } else {
+      name.classList.remove('error');
+      nameError.style.display = 'none';
+    }
+
+    const phoneRegex = /^08\d{8,11}$/;
+    if (!phoneRegex.test(phone.value.replace(/\s/g, ''))) {
+      phone.classList.add('error');
+      phoneError.textContent = 'Format nomor WA tidak valid (contoh: 08123456789)';
+      phoneError.style.display = 'block';
+      valid = false;
+    } else {
+      phone.classList.remove('error');
+      phoneError.style.display = 'none';
+    }
+
+    if (valid) {
+      bookingState.playerName = name.value.trim();
+      bookingState.playerPhone = phone.value.replace(/\s/g, '');
+      bookingState.playerEmail = document.getElementById('playerEmail').value.trim();
+      bookingState.playerCount = parseInt(document.getElementById('playerCount').value);
+      bookingState.specialRequest = document.getElementById('specialRequest').value.trim();
+    }
+    return valid;
+  }
+
+  paymentOptions.forEach(opt => {
+    opt.addEventListener('click', () => selectPaymentMethod(opt.dataset.method, opt));
+    opt.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); opt.click(); }
+    });
+  });
+
+  function selectPaymentMethod(method, element) {
+    bookingState.paymentMethod = method;
+    paymentOptions.forEach(o => {
+      o.setAttribute('aria-checked', 'false');
+      o.querySelector('input').checked = false;
+    });
+    element.setAttribute('aria-checked', 'true');
+    element.querySelector('input').checked = true;
+    document.getElementById('transferDetails').hidden = method !== 'transfer';
+    document.getElementById('qrisDetails').hidden = method !== 'qris';
+  }
+
+  document.querySelectorAll('.copy-account').forEach(btn => {
+    btn.addEventListener('click', () => {
+      navigator.clipboard.writeText(btn.dataset.account);
+      showToast('Nomor rekening disalin!', 'success');
+    });
+  });
+
+  uploadZone.addEventListener('click', () => fileInput.click());
+  uploadZone.addEventListener('dragover', (e) => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+  uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+  uploadZone.addEventListener('drop', (e) => {
+    e.preventDefault(); uploadZone.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+  function handleFile(file) {
+    if (!file.type.startsWith('image/')) { showToast('File harus berupa gambar (JPG/PNG)', 'error'); return; }
+    if (file.size > 5 * 1024 * 1024) { showToast('Ukuran file maksimal 5MB', 'error'); return; }
+    bookingState.paymentProof = file;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      previewImage.src = e.target.result;
+      uploadZone.hidden = true;
+      filePreview.hidden = false;
+      proofError.hidden = true;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  document.querySelector('.remove-file').addEventListener('click', () => {
+    bookingState.paymentProof = null;
+    fileInput.value = '';
+    uploadZone.hidden = false;
+    filePreview.hidden = true;
+  });
+
+  submitBtn.addEventListener('click', () => {
+    if (!bookingState.paymentProof) {
+      proofError.hidden = false;
+      uploadZone.classList.add('error');
+      return;
+    }
+    proofError.hidden = true;
+    uploadZone.classList.remove('error');
+    bookingState.bookingId = 'DP-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).substr(2, 4).toUpperCase();
+    const waMessage = generateWhatsAppMessage();
+    whatsappConfirmBtn.href = `https://wa.me/6281234567890?text=${encodeURIComponent(waMessage)}`;
+    showConfirmation();
+    showStep(5);
+  });
+
+  function generateWhatsAppMessage() {
+    const v = bookingState.venue;
+    const date = new Date(bookingState.date).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const total = calculateTotal();
+    return `Halo Demo Padel, saya mau konfirmasi booking:\n\n📋 *ID Booking:* ${bookingState.bookingId}\n🏟 *Venue:* ${v.name}\n📍 *Lokasi:* ${v.address}\n📅 *Tanggal:* ${date}\n⏰ *Jam:* ${bookingState.timeSlot} - ${parseInt(bookingState.timeSlot.split(':')[0]) + bookingState.duration}:00\n⏱ *Durasi:* ${bookingState.duration} jam\n👥 *Pemain:* ${bookingState.playerCount} orang\n💰 *Total:* Rp ${total.toLocaleString('id-ID')}\n💳 *Metode:* ${bookingState.paymentMethod === 'transfer' ? 'Transfer Bank' : 'QRIS'}\n\n👤 *Pemesan:* ${bookingState.playerName}\n📱 *WhatsApp:* ${bookingState.playerPhone}\n${bookingState.playerEmail ? `📧 *Email:* ${bookingState.playerEmail}` : ''}\n${bookingState.specialRequest ? `📝 *Catatan:* ${bookingState.specialRequest}` : ''}\n\nBukti transfer sudah diupload. Mohon dikonfirmasi ya! Terima kasih.`;
+  }
+
+  function calculateTotal() {
+    const venue = bookingState.venue;
+    if (!venue) return 0;
+    const pricePerHour = parseInt(venue.price.replace(/\./g, ''));
+    return pricePerHour * bookingState.duration;
+  }
+
+  function showConfirmation() {
+    const v = bookingState.venue;
+    const date = new Date(bookingState.date).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const endTime = parseInt(bookingState.timeSlot.split(':')[0]) + bookingState.duration;
+    document.getElementById('confirmationDetails').innerHTML = `
+      <div class="confirmation-detail"><span>Venue</span><span>${v.name}</span></div>
+      <div class="confirmation-detail"><span>Tanggal</span><span>${date}</span></div>
+      <div class="confirmation-detail"><span>Jam</span><span>${bookingState.timeSlot} - ${endTime.toString().padStart(2,'0')}:00</span></div>
+      <div class="confirmation-detail"><span>Durasi</span><span>${bookingState.duration} jam</span></div>
+      <div class="confirmation-detail"><span>Pemain</span><span>${bookingState.playerCount} orang</span></div>
+      <div class="confirmation-detail"><span>Total Bayar</span><span>Rp ${calculateTotal().toLocaleString('id-ID')}</span></div>
+      <div class="confirmation-detail"><span>Metode Bayar</span><span>${bookingState.paymentMethod === 'transfer' ? 'Transfer Bank' : 'QRIS'}</span></div>
+      <div class="confirmation-detail"><span>Pemesan</span><span>${bookingState.playerName}</span></div>
+      <div class="confirmation-detail"><span>WhatsApp</span><span>${bookingState.playerPhone}</span></div>
+    `;
+    document.getElementById('bookingId').textContent = bookingState.bookingId;
+  }
+
+  function updateSidebar() {
+    const sidebarSummary = document.getElementById('sidebarSummary');
+    const priceBreakdown = document.getElementById('priceBreakdown');
+    const sidebarPrice = document.getElementById('sidebarPrice');
+    const sidebarDuration = document.getElementById('sidebarDuration');
+    const sidebarTotal = document.getElementById('sidebarTotal');
+
+    if (!bookingState.venue) {
+      sidebarSummary.innerHTML = '<p class="text-center" style="color: var(--gray-400); padding: 2rem;">Belum ada venue dipilih</p>';
+      priceBreakdown.hidden = true;
+      return;
+    }
+
+    const v = bookingState.venue;
+    const pricePerHour = parseInt(v.price.replace(/\./g, ''));
+    const total = bookingState.timeSlot ? pricePerHour * bookingState.duration : pricePerHour;
+
+    sidebarSummary.innerHTML = `
+      <div class="summary-item" style="margin-bottom:0.75rem;">
+        <strong style="font-size:1rem;display:block;margin-bottom:0.25rem;">${v.name}</strong>
+        <span style="font-size:0.8125rem;color:var(--gray-500);">${v.type} · ${v.courts} Lapangan</span>
+      </div>
+      ${bookingState.date ? `<div class="summary-item" style="font-size:0.875rem;margin-bottom:0.5rem;">📅 ${new Date(bookingState.date).toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short' })}</div>` : ''}
+      ${bookingState.timeSlot ? `<div class="summary-item" style="font-size:0.875rem;">⏰ ${bookingState.timeSlot} (${bookingState.duration} jam)</div>` : ''}
+    `;
+
+    sidebarPrice.textContent = `Rp ${pricePerHour.toLocaleString('id-ID')}`;
+    sidebarDuration.textContent = `${bookingState.duration} jam`;
+    sidebarTotal.textContent = `Rp ${total.toLocaleString('id-ID')}`;
+    priceBreakdown.hidden = false;
+  }
+
+  document.querySelectorAll('.next-step').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const currentStep = parseInt(document.querySelector('.booking-step.active').dataset.step);
+      if (currentStep === 1 && bookingState.venue) showStep(2);
+      else if (currentStep === 3) playerForm.dispatchEvent(new Event('submit'));
+    });
+  });
+
+  document.querySelectorAll('.prev-step').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const currentStep = parseInt(document.querySelector('.booking-step.active').dataset.step);
+      if (currentStep > 1) showStep(currentStep - 1);
+    });
+  });
+
+  // DATE TIME MODAL
+  const dtModalOverlay = document.getElementById('dtModalOverlay');
+  const dtModalClose = document.getElementById('dtModalClose');
+  const dtModalCancel = document.getElementById('dtModalCancel');
+  const dtModalConfirm = document.getElementById('dtModalConfirm');
+  const openDtBtn = document.getElementById('openDateTimeModal');
+
+  function openDtModal() {
+    dtModalOverlay.hidden = false;
+    document.body.style.overflow = 'hidden';
+    renderDateChips();
+    if (bookingState.date) {
+      const activeChip = dateChipsContainer.querySelector(`[data-date="${bookingState.date}"]`);
+      if (activeChip) { activeChip.classList.add('active'); renderTimeSlots(); }
+    }
+    if (bookingState.timeSlot) dtModalConfirm.disabled = false;
+  }
+
+  function closeDtModal() {
+    dtModalOverlay.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  openDtBtn.addEventListener('click', openDtModal);
+  dtModalClose.addEventListener('click', closeDtModal);
+  dtModalCancel.addEventListener('click', closeDtModal);
+  dtModalOverlay.addEventListener('click', (e) => { if (e.target === dtModalOverlay) closeDtModal(); });
+
+  dtModalConfirm.addEventListener('click', () => {
+    if (bookingState.date && bookingState.timeSlot) {
+      closeDtModal();
+      showStep(3);
+      updateSidebar();
+    }
+  });
+
+  // Remove old next-step for step 2
+  document.querySelector('#step-2 .next-step')?.remove();
+
+  newBookingBtn.addEventListener('click', () => {
+    Object.keys(bookingState).forEach(k => {
+      if (k !== 'bookingId') bookingState[k] = k === 'playerCount' ? 4 : (k === 'paymentMethod' ? 'transfer' : null);
+    });
+    bookingState.bookingId = null;
+    venueOptions.forEach(o => { o.setAttribute('aria-checked', 'false'); o.querySelector('input').checked = false; });
+    dateInput.value = '';
+    dateChipsContainer.querySelectorAll('.date-chip').forEach(c => c.classList.remove('active'));
+    renderDateChips();
+    renderTimeSlots();
+    playerForm.reset();
+    paymentOptions.forEach(o => { o.setAttribute('aria-checked', o.dataset.method === 'transfer'); o.querySelector('input').checked = o.dataset.method === 'transfer'; });
+    document.getElementById('transferDetails').hidden = false;
+    document.getElementById('qrisDetails').hidden = true;
+    bookingState.paymentProof = null;
+    fileInput.value = '';
+    uploadZone.hidden = false;
+    filePreview.hidden = true;
+    proofError.hidden = true;
+    document.querySelector('#step-1 .next-step').disabled = true;
+    dtModalConfirm.disabled = true;
+    showStep(1);
+    updateSidebar();
+  });
+
+  function showToast(message, type = 'success') {
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('show'));
+    setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
+  }
+
+  renderDateChips();
+  renderTimeSlots();
+  updateSidebar();
+</script>
