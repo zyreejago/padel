@@ -142,6 +142,25 @@ function fmtDate(start: string, end: string): string {
 </style>
 
 <script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.page-hero > .container > *', {
+    y: 50, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: 0.2,
+  });
+
+  gsap.from('.filter-pill', {
+    y: 20, opacity: 0, duration: 0.4, stagger: 0.06, ease: 'power3.out',
+    scrollTrigger: { trigger: '.filter-bar', start: 'top 85%' },
+  });
+
+  gsap.from('.event-card', {
+    y: 60, opacity: 0, scale: 0.95, duration: 0.7,
+    stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.event-grid', start: 'top 80%' },
+  });
+
   const pills = document.querySelectorAll('.filter-pill');
   const cards = document.querySelectorAll('.event-card');
   pills.forEach(p => {
@@ -151,7 +170,12 @@ function fmtDate(start: string, end: string): string {
       const f = p.dataset.filter;
       cards.forEach(c => {
         const cat = c.dataset.cat;
-        (f === 'all' || cat.includes(f)) ? (c.style.display = 'flex') : (c.style.display = 'none');
+        if (f === 'all' || cat.includes(f)) {
+          c.style.display = 'flex';
+          gsap.from(c, { y: 30, opacity: 0, duration: 0.4, ease: 'power3.out' });
+        } else {
+          c.style.display = 'none';
+        }
       });
     });
   });

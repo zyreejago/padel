@@ -720,6 +720,17 @@ import { venues } from '../data/content.ts';
     .step-indicator { overflow-x: auto; padding-bottom: 0.5rem; flex-wrap: nowrap; }
     .step-line { width: 32px; flex-shrink: 0; }
     .step-label { font-size: 0.625rem; }
+    .payment-option { padding: 1rem; }
+    .payment-icon { width: 44px; height: 44px; }
+    .bank-account { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+    .bank-account .copy-account { align-self: flex-end; }
+    .upload-zone { padding: 1.5rem; }
+    .qris-placeholder { padding: 1.5rem; }
+    .qris-placeholder svg { width: 48px; height: 48px; }
+    .booking-step h2 { font-size: 1.25rem; }
+    .step-navigation { flex-direction: column; gap: 0.75rem; }
+    .step-navigation .btn { width: 100%; justify-content: center; }
+    .payment-summary { padding: 1.25rem; }
   }
 </style>
 
@@ -1135,4 +1146,26 @@ import { venues } from '../data/content.ts';
   renderDateChips();
   renderTimeSlots();
   updateSidebar();
+
+  // GSAP Animations
+  import('gsap').then(({ default: gsap }) => {
+    import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Hero
+      gsap.from('.booking-hero-content > *', {
+        y: 40, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out', delay: 0.2,
+      });
+
+      // Step indicator
+      gsap.from('.step', {
+        y: 20, opacity: 0, duration: 0.5, stagger: 0.08, ease: 'power3.out', delay: 0.4,
+      });
+
+      // Sidebar
+      gsap.from('.sidebar-card', {
+        x: 40, opacity: 0, duration: 0.7, ease: 'power3.out', delay: 0.5,
+      });
+    });
+  });
 </script>

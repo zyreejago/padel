@@ -119,6 +119,20 @@ import { venues } from '../data/content.ts';
 </style>
 
 <script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.from('.page-hero > *', {
+    y: 40, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out', delay: 0.2,
+  });
+
+  gsap.from('.venue-detail-card', {
+    y: 60, opacity: 0, scale: 0.95, duration: 0.7,
+    stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.venue-detail-grid', start: 'top 80%' },
+  });
+
   const pills = document.querySelectorAll('.filter-pill');
   const cards = document.querySelectorAll('.venue-detail-card');
   pills.forEach(p => {
@@ -128,7 +142,12 @@ import { venues } from '../data/content.ts';
       const f = p.dataset.filter;
       cards.forEach(c => {
         const t = c.dataset.type;
-        (f === 'all' || t.includes(f)) ? (c.style.display = 'grid') : (c.style.display = 'none');
+        if (f === 'all' || t.includes(f)) {
+          c.style.display = 'grid';
+          gsap.from(c, { y: 30, opacity: 0, duration: 0.4, ease: 'power3.out' });
+        } else {
+          c.style.display = 'none';
+        }
       });
     });
   });

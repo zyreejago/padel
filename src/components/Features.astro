@@ -1,94 +1,247 @@
 ---
 ---
 
-<section class="feat-section" aria-labelledby="feat-title">
-  <div class="feat-header">
-    <div class="container feat-header-inner">
-      <div class="feat-title-wrap">
-        <span class="feat-heading" id="feat-title">KENAPA<br />DEMO PADEL</span>
+<section class="feat-section" id="kenapa">
+  <div class="feat-bg-text" aria-hidden="true">PADEL</div>
+  <div class="container">
+    <div class="feat-layout">
+      <div class="feat-left">
+        <span class="feat-tag" data-f="tag">Kenapa Demo Padel</span>
+        <h2 class="feat-heading" data-f="heading">KENAPA<br />DEMO<br />PADEL</h2>
+        <p class="feat-desc" data-f="desc">Kami bikin main padel semudah pesan ojek online. Cek jadwal, bayar, main. Selesai.</p>
+        <a href="/layanan" class="feat-cta" data-f="cta">
+          Lihat Layanan
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
-      <p class="feat-desc">Kami bikin main padel semudah pesan ojek online. Cek jadwal, bayar, main. Selesai.</p>
-    </div>
-  </div>
-
-  <div class="feat-marquee-wrapper">
-    <div class="feat-marquee" id="featMarquee">
-      {[
-        { num: '01', title: 'BOOKING 60 DETIK', desc: 'Pilih venue, tanggal, jam. Bayar transfer/QRIS. Konfirmasi langsung ke WA.', img: '/images/padel-1.jpeg' },
-        { num: '02', title: 'HARGA TRANSPARAN', desc: 'Harga yang kelihat = harga yang dibayar. Gak ada biaya admin tersembunyi.', img: '/images/padel-2.jpeg' },
-        { num: '03', title: 'COACH BERSERTIFIKAT', desc: 'Pelatih berlisensi ITF/PTP. Coaching pribadi, grup, atau clinic. Progres terjamin.', img: '/images/padel-3.avif' },
-        { num: '04', title: 'EVENT & KOMUNITAS', desc: 'Turnamen rutin, corporate event, clinic weekend. Main sambil networking.', img: '/images/padel-1.jpeg' },
-      ].map((f) => (
-        <div class="feat-card">
-          <div class="feat-card-bg" style={`background-image: url(${f.img})`}></div>
-          <div class="feat-card-overlay"></div>
-          <div class="feat-card-content">
-            <span class="feat-num">{f.num}</span>
-            <h3>{f.title}</h3>
-            <p>{f.desc}</p>
+      <div class="feat-right">
+        <div class="feat-card feat-card--1" data-f="card">
+          <div class="feat-card-inner">
+            <div class="feat-card-num">01</div>
+            <div class="feat-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <h3>Booking 60 Detik</h3>
+            <p>Pilih venue, tanggal, jam. Bayar transfer/QRIS. Konfirmasi langsung ke WA.</p>
           </div>
         </div>
-      ))}
+        <div class="feat-card feat-card--2" data-f="card">
+          <div class="feat-card-inner">
+            <div class="feat-card-num">02</div>
+            <div class="feat-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Harga Transparan</h3>
+            <p>Harga yang kelihat = harga yang dibayar. Gak ada biaya admin tersembunyi.</p>
+          </div>
+        </div>
+        <div class="feat-card feat-card--3" data-f="card">
+          <div class="feat-card-inner">
+            <div class="feat-card-num">03</div>
+            <div class="feat-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3>Coach Bersertifikat</h3>
+            <p>Pelatih berlisensi ITF/PTP. Coaching pribadi, grup, atau clinic. Progres terjamin.</p>
+          </div>
+        </div>
+        <div class="feat-card feat-card--4" data-f="card">
+          <div class="feat-card-inner">
+            <div class="feat-card-num">04</div>
+            <div class="feat-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="28" height="28"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V14.66"/><path d="M18 2H6"/></svg>
+            </div>
+            <h3>Event & Komunitas</h3>
+            <p>Turnamen rutin, corporate event, clinic weekend. Main sambil networking.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<style>
-  .feat-section { padding: clamp(4rem, 8vw, 6rem) 0; background: var(--white); overflow: hidden; }
-  .feat-header { margin-bottom: clamp(2rem, 4vw, 3rem); }
-  .feat-header-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-  .feat-heading {
-    font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem);
-    font-weight: 900; text-transform: uppercase; line-height: 0.95;
-    letter-spacing: -0.03em; color: var(--dark);
-  }
-  .feat-desc { max-width: 380px; font-size: 1rem; color: var(--gray-500); line-height: 1.7; padding-top: 0.5rem; }
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
 
-  .feat-marquee-wrapper { overflow: hidden; padding: 0 clamp(1rem, 4vw, 2rem); }
-  .feat-marquee {
-    display: flex; gap: 1.5rem;
-    overflow-x: auto; scroll-snap-type: x mandatory;
-    scrollbar-width: none; -ms-overflow-style: none;
-    padding-bottom: 0.5rem;
+  const tl = gsap.timeline({
+    scrollTrigger: { trigger: '.feat-section', start: 'top 70%' }
+  });
+
+  tl.from('[data-f="tag"]', { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out' })
+    .from('[data-f="heading"]', { y: 60, opacity: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+    .from('[data-f="desc"]', { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+    .from('[data-f="cta"]', { y: 20, opacity: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3');
+
+  document.querySelectorAll('[data-f="card"]').forEach((card, i) => {
+    gsap.from(card, {
+      y: 80,
+      opacity: 0,
+      rotation: i % 2 === 0 ? -6 : 6,
+      scale: 0.9,
+      duration: 0.8,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: card,
+        start: 'top 90%',
+      },
+      delay: i * 0.1,
+    });
+  });
+
+  // Parallax bg text
+  gsap.to('.feat-bg-text', {
+    y: -80,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.feat-section',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1,
+    },
+  });
+</script>
+
+<style>
+  .feat-section {
+    position: relative;
+    padding: clamp(5rem, 10vw, 8rem) 0;
+    background: var(--white);
+    overflow: hidden;
   }
-  .feat-marquee::-webkit-scrollbar { display: none; }
+
+  .feat-bg-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-size: clamp(8rem, 20vw, 18rem);
+    font-weight: 900;
+    color: var(--gray-100);
+    letter-spacing: -0.05em;
+    white-space: nowrap;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .feat-layout {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: start;
+  }
+
+  .feat-left {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+
+  .feat-tag {
+    display: inline-block;
+    font-size: 0.6875rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--primary);
+    background: rgba(10,61,50,0.08);
+    padding: 0.375rem 0.875rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
+  }
+
+  .feat-heading {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 7vw, 6rem);
+    font-weight: 900; text-transform: uppercase;
+    line-height: 0.9; letter-spacing: -0.04em;
+    color: var(--dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .feat-desc {
+    font-size: 1.0625rem;
+    color: var(--gray-500);
+    line-height: 1.75;
+    max-width: 360px;
+    margin-bottom: 2rem;
+  }
+
+  .feat-cta {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: var(--primary); color: #fff;
+    border-radius: 999px;
+    font-weight: 700; font-size: 0.9375rem;
+    text-transform: uppercase; letter-spacing: 0.04em;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  .feat-cta:hover { background: var(--primary-dark); transform: translateX(4px); }
+
+  .feat-right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
 
   .feat-card {
-    flex: 0 0 clamp(300px, 35vw, 420px);
-    scroll-snap-align: start;
-    position: relative; height: 380px;
-    border-radius: 22px; overflow: hidden;
-    cursor: pointer; transition: transform 0.4s var(--ease-out-expo);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.4s var(--ease-out-expo);
   }
-  .feat-card:hover { transform: scale(1.02); }
-  .feat-card-bg {
-    position: absolute; inset: 0;
-    background-size: cover; background-position: center;
-    transition: transform 0.6s var(--ease-out-expo);
-  }
-  .feat-card:hover .feat-card-bg { transform: scale(1.08); }
-  .feat-card-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.1) 100%);
-  }
-  .feat-card-content {
-    position: absolute; bottom: 0; left: 0; right: 0;
-    padding: 2rem; z-index: 2;
-  }
-  .feat-num {
-    font-size: 4rem; font-weight: 900; color: rgba(255,255,255,0.12);
-    line-height: 1; letter-spacing: -0.05em; display: block; margin-bottom: -1rem;
-  }
-  .feat-card-content h3 {
-    font-size: clamp(1.25rem, 2.5vw, 1.75rem);
-    font-weight: 900; color: #fff; text-transform: uppercase;
-    letter-spacing: -0.01em; line-height: 1.05; margin-bottom: 0.5rem;
-  }
-  .feat-card-content p {
-    font-size: 0.875rem; color: rgba(255,255,255,0.6); line-height: 1.7;
+  .feat-card:hover { transform: translateY(-4px) !important; }
+
+  .feat-card--1 { background: var(--primary); color: #fff; }
+  .feat-card--2 { background: var(--cream); color: var(--dark); }
+  .feat-card--3 { background: var(--cream); color: var(--dark); }
+  .feat-card--4 { background: var(--primary); color: #fff; }
+
+  .feat-card-inner {
+    padding: 2rem 1.75rem;
+    position: relative;
   }
 
-  @media (max-width: 768px) {
-    .feat-card { height: 300px; }
+  .feat-card-num {
+    font-size: 5rem; font-weight: 900;
+    line-height: 1; letter-spacing: -0.05em;
+    margin-bottom: 0.5rem;
+    opacity: 0.12;
+  }
+  .feat-card--1 .feat-card-num { opacity: 0.2; }
+  .feat-card--4 .feat-card-num { opacity: 0.2; }
+
+  .feat-card-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+  }
+  .feat-card:hover .feat-card-icon { transform: rotate(-5deg) scale(1.1); }
+
+  .feat-card--1 .feat-card-icon { background: rgba(255,255,255,0.2); color: #fff; }
+  .feat-card--2 .feat-card-icon { background: rgba(10,61,50,0.1); color: var(--primary); }
+  .feat-card--3 .feat-card-icon { background: rgba(10,61,50,0.1); color: var(--primary); }
+  .feat-card--4 .feat-card-icon { background: rgba(255,255,255,0.2); color: #fff; }
+
+  .feat-card h3 {
+    font-size: 1.125rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.02em;
+    margin-bottom: 0.5rem; line-height: 1.2;
+    color: var(--accent);
+  }
+  .feat-card--2 h3, .feat-card--3 h3 { color: var(--dark); }
+  .feat-card p {
+    font-size: 0.875rem; line-height: 1.7;
+  }
+  .feat-card--2 p, .feat-card--3 p { color: var(--gray-500); }
+  .feat-card--1 p, .feat-card--4 p { color: rgba(255,255,255,0.75); }
+
+  @media (max-width: 900px) {
+    .feat-layout { grid-template-columns: 1fr; }
+    .feat-left { position: static; }
+    .feat-right { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .feat-right { grid-template-columns: 1fr; }
   }
 </style>

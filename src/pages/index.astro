@@ -71,56 +71,52 @@ import CTA from '../components/CTA.astro';
 
   <Features />
 
-  <!-- WHAT WE OFFER - CAROUSEL -->
-  <section class="svc-carousel-section" id="layanan">
-    <div class="svc-carousel-header">
-      <div class="container svc-carousel-header-inner">
-        <div class="svc-carousel-title">
-          <span class="svc-carousel-heading">WHAT WE<br />OFFER</span>
-          <a href="/layanan" class="btn btn-accent btn-sm svc-dl-btn">
+  <!-- WHAT WE OFFER - MARQUEE -->
+  <section class="svc-marquee-section" id="layanan">
+    <div class="svc-marquee-header">
+      <div class="container svc-marquee-header-inner">
+        <div class="svc-marquee-title">
+          <span class="svc-marquee-heading" data-anim="svc">WHAT WE<br />OFFER</span>
+          <a href="/layanan" class="btn btn-accent btn-sm svc-dl-btn" data-anim="svc">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             LIHAT SEMUA LAYANAN
           </a>
         </div>
-        <p class="svc-carousel-desc">Kami menyediakan layanan lengkap untuk kebutuhan padel kamu. Dari sewa lapangan, coaching, sampai turnamen.</p>
+        <p class="svc-marquee-desc" data-anim="svc">Kami menyediakan layanan lengkap untuk kebutuhan padel kamu. Dari sewa lapangan, coaching, sampai turnamen.</p>
       </div>
     </div>
 
-    <div class="svc-carousel-track-wrapper">
-      <div class="svc-carousel-track" id="svcCarousel">
+    <div class="svc-marquee-wrapper" id="svcMarqueeWrapper">
+      <div class="svc-marquee-track" id="svcMarqueeTrack">
         {[
           { title: 'SEWA LAPANGAN', img: '/images/padel-1.jpeg', price: 'Rp 150.000/jam', popular: true },
           { title: 'SEWA ALAT', img: '/images/padel-2.jpeg', price: 'Rp 35.000/paket', popular: false },
           { title: 'COACHING PRIBADI', img: '/images/padel-3.webp', price: 'Rp 300.000/sesi', popular: true },
           { title: 'EVENT & TURNAMEN', img: '/images/padel-1.jpeg', price: 'Rp 5.000.000/event', popular: false },
           { title: 'FOOD & BEVERAGE', img: '/images/padel-2.jpeg', price: 'Rp 25.000/item', popular: false },
+          { title: 'SEWA LAPANGAN', img: '/images/padel-1.jpeg', price: 'Rp 150.000/jam', popular: true },
+          { title: 'SEWA ALAT', img: '/images/padel-2.jpeg', price: 'Rp 35.000/paket', popular: false },
+          { title: 'COACHING PRIBADI', img: '/images/padel-3.webp', price: 'Rp 300.000/sesi', popular: true },
         ].map((s) => (
-          <div class="svc-slide">
-            <a href="/booking" class="svc-slide-book">Book Now ↗</a>
-            <a href="/layanan" class="svc-slide-card" style={`background-image: url(${s.img})`}>
-              <div class="svc-slide-overlay"></div>
-              <div class="svc-slide-content">
-                <h3>{s.title}</h3>
-                <span class="svc-slide-price">{s.price}</span>
-              </div>
-            </a>
-          </div>
+          <a href="/layanan" class="svc-m-card">
+            <div class="svc-m-visual" style={`background-image: url(${s.img})`}>
+              <div class="svc-m-overlay"></div>
+              {s.popular && <span class="svc-m-badge">Populer</span>}
+            </div>
+            <div class="svc-m-body">
+              <h3>{s.title}</h3>
+              <span class="svc-m-price">{s.price}</span>
+            </div>
+          </a>
         ))}
       </div>
     </div>
 
-    <div class="svc-carousel-nav">
-      <button class="svc-nav-btn" id="svcPrev" aria-label="Sebelumnya">
+    <div class="svc-marquee-nav">
+      <button class="svc-marquee-btn" id="svcMarqueePrev" aria-label="Sebelumnya">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
-      <div class="svc-dots" id="svcDots">
-        <button class="svc-dot active" data-i="0"></button>
-        <button class="svc-dot" data-i="1"></button>
-        <button class="svc-dot" data-i="2"></button>
-        <button class="svc-dot" data-i="3"></button>
-        <button class="svc-dot" data-i="4"></button>
-      </div>
-      <button class="svc-nav-btn" id="svcNext" aria-label="Selanjutnya">
+      <button class="svc-marquee-btn" id="svcMarqueeNext" aria-label="Selanjutnya">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><polyline points="9 18 15 12 9 6"/></svg>
       </button>
     </div>
@@ -202,18 +198,38 @@ import CTA from '../components/CTA.astro';
     delay: 0.3,
   });
 
+  // Believe section
+  gsap.from('.believe-heading', {
+    x: -60, opacity: 0, duration: 0.9, ease: 'power3.out',
+    scrollTrigger: { trigger: '.believe-section', start: 'top 75%' },
+  });
+  gsap.from('.believe-right > *', {
+    x: 60, opacity: 0, duration: 0.7, stagger: 0.12, ease: 'power3.out',
+    scrollTrigger: { trigger: '.believe-section', start: 'top 75%' },
+  });
+  gsap.from('.believe-hero-img', {
+    y: 80, opacity: 0, scale: 0.95, duration: 1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.believe-image-wrapper', start: 'top 85%' },
+  });
+
   // How it works
   gsap.from('.how-card', {
     y: 60, opacity: 0, duration: 0.7,
     stagger: 0.15, ease: 'power3.out',
     scrollTrigger: { trigger: '.how-grid', start: 'top 80%' },
   });
+  gsap.from('.how-connector', {
+    scale: 0, opacity: 0, duration: 0.5,
+    stagger: 0.1, ease: 'back.out(1.7)',
+    scrollTrigger: { trigger: '.how-grid', start: 'top 80%' },
+  });
 
-  // Features
-  gsap.from('.feature-card', {
-    y: 60, opacity: 0, duration: 0.7,
-    stagger: 0.1, ease: 'power3.out',
-    scrollTrigger: { trigger: '.features-grid', start: 'top 80%' },
+  // Features dark section (handled inside Features.astro)
+
+  // Services marquee header
+  gsap.from('[data-anim="svc"]', {
+    y: 40, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.svc-marquee-section', start: 'top 75%' },
   });
 
   // Services carousel
@@ -224,10 +240,10 @@ import CTA from '../components/CTA.astro';
   });
 
   // Venues
-  gsap.from('.venue-card', {
-    y: 50, opacity: 0, duration: 0.6,
-    stagger: 0.08, ease: 'power3.out',
-    scrollTrigger: { trigger: '.venue-grid', start: 'top 80%' },
+  gsap.from('.vnp-card', {
+    y: 60, opacity: 0, scale: 0.95, duration: 0.7,
+    stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.vnp-list', start: 'top 80%' },
   });
 
   // Stats
@@ -237,12 +253,18 @@ import CTA from '../components/CTA.astro';
     scrollTrigger: { trigger: '.stats-grid', start: 'top 85%' },
   });
 
-  // Section headers
-  gsap.utils.toArray('.section-header').forEach((h) => {
-    gsap.from(h, {
-      y: 30, opacity: 0, duration: 0.7, ease: 'power3.out',
-      scrollTrigger: { trigger: h, start: 'top 85%' },
-    });
+  // Partners
+  gsap.from('.partner-logo', {
+    y: 20, opacity: 0, duration: 0.5,
+    stagger: 0.06, ease: 'power3.out',
+    scrollTrigger: { trigger: '.partners-grid', start: 'top 85%' },
+  });
+
+  // Testimonials
+  gsap.from('.testimonial-card', {
+    y: 50, opacity: 0, duration: 0.7,
+    stagger: 0.1, ease: 'power3.out',
+    scrollTrigger: { trigger: '.testimonials-grid', start: 'top 80%' },
   });
 
   // CTA
@@ -250,6 +272,14 @@ import CTA from '../components/CTA.astro';
     y: 40, opacity: 0, duration: 0.7,
     stagger: 0.1, ease: 'power3.out',
     scrollTrigger: { trigger: '.cta-section', start: 'top 80%' },
+  });
+
+  // Section headers
+  gsap.utils.toArray('.section-header').forEach((h) => {
+    gsap.from(h, {
+      y: 30, opacity: 0, duration: 0.7, ease: 'power3.out',
+      scrollTrigger: { trigger: h, start: 'top 85%' },
+    });
   });
 </script>
 
@@ -279,86 +309,81 @@ import CTA from '../components/CTA.astro';
     color: var(--gray-300);
   }
 
-  /* SERVICES CAROUSEL */
-  .svc-carousel-section { padding: clamp(4rem, 8vw, 6rem) 0 0; background: var(--cream); overflow: hidden; }
-  .svc-carousel-header { margin-bottom: clamp(2rem, 4vw, 3rem); }
-  .svc-carousel-header-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
-  .svc-carousel-title { display: flex; flex-direction: column; gap: 1rem; }
-  .svc-carousel-heading {
+  /* WHAT WE OFFER MARQUEE */
+  .svc-marquee-section { padding: clamp(4rem, 8vw, 6rem) 0; background: var(--cream); overflow: hidden; }
+  .svc-marquee-header { margin-bottom: clamp(2rem, 4vw, 3rem); }
+  .svc-marquee-header-inner { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+  .svc-marquee-title { display: flex; flex-direction: column; gap: 1rem; }
+  .svc-marquee-heading {
     font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 900; text-transform: uppercase; line-height: 0.95;
     letter-spacing: -0.03em; color: var(--dark);
   }
   .svc-dl-btn { width: fit-content; }
-  .svc-carousel-desc { max-width: 400px; font-size: 1rem; color: var(--gray-500); line-height: 1.7; padding-top: 0.5rem; }
+  .svc-marquee-desc { max-width: 400px; font-size: 1rem; color: var(--gray-500); line-height: 1.7; padding-top: 0.5rem; }
 
-  .svc-carousel-track-wrapper { overflow: hidden; padding: 0 clamp(1rem, 4vw, 2rem); }
-  .svc-carousel-track {
-    display: flex; gap: 1.5rem;
-    overflow-x: auto; scroll-snap-type: x mandatory;
+  .svc-marquee-wrapper {
+    overflow-x: scroll; cursor: grab;
+    padding: 0 clamp(1rem, 4vw, 2rem);
     scrollbar-width: none; -ms-overflow-style: none;
-    padding-bottom: 1rem;
   }
-  .svc-carousel-track::-webkit-scrollbar { display: none; }
+  .svc-marquee-wrapper::-webkit-scrollbar { display: none; }
+  .svc-marquee-wrapper:active { cursor: grabbing; }
+  .svc-marquee-track {
+    display: flex; gap: 1.5rem;
+    width: max-content;
+  }
+  .svc-marquee-track.dragging * { pointer-events: none; }
 
-  .svc-slide {
-    flex: 0 0 clamp(300px, 40vw, 480px);
-    scroll-snap-align: start;
-    position: relative; height: 350px;
+  .svc-m-card {
+    flex: 0 0 clamp(280px, 32vw, 400px);
+    background: var(--white); border-radius: 20px;
+    overflow: hidden; text-decoration: none; color: inherit;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.4s var(--ease-out-expo), box-shadow 0.4s ease;
   }
-  .svc-slide-book {
-    position: absolute; top: 1rem; left: 1rem; z-index: 10;
-    padding: 0.375rem 1rem;
-    background: var(--accent); color: var(--dark);
-    border-radius: var(--radius-full);
-    font-size: 0.75rem; font-weight: 800;
-    text-transform: uppercase; letter-spacing: 0.06em;
-    transition: all 0.3s ease;
-  }
-  .svc-slide-book:hover { transform: scale(1.05); }
-  .svc-slide-card {
-    display: flex; align-items: flex-end;
-    width: 100%; height: 100%;
-    border-radius: 22px; overflow: hidden;
+  .svc-m-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+
+  .svc-m-visual {
+    position: relative; aspect-ratio: 16/10;
     background-size: cover; background-position: center;
-    text-decoration: none; position: relative;
-    padding: 1.25rem; transition: transform 0.4s var(--ease-out-expo);
+    transition: transform 0.6s var(--ease-out-expo);
   }
-  .svc-slide-card:hover { transform: scale(1.02); }
-  .svc-slide-overlay {
+  .svc-m-card:hover .svc-m-visual { transform: scale(1.04); }
+  .svc-m-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
-    border-radius: 22px;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%);
   }
-  .svc-slide-content { position: relative; z-index: 2; }
-  .svc-slide-content h3 {
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 900; color: #fff; text-transform: uppercase;
-    letter-spacing: -0.02em; line-height: 1.05; margin-bottom: 0.25rem;
-  }
-  .svc-slide-price {
-    font-size: 0.8125rem; color: var(--accent); font-weight: 600;
-    text-transform: uppercase; letter-spacing: 0.04em;
+  .svc-m-badge {
+    position: absolute; top: 0.75rem; left: 0.75rem;
+    padding: 0.3rem 0.75rem; background: var(--accent); color: var(--dark);
+    border-radius: 999px; font-size: 0.6875rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.06em;
   }
 
-  .svc-carousel-nav {
-    display: flex; align-items: center; justify-content: center;
-    gap: 1rem; margin-top: 2rem; padding-bottom: clamp(2rem, 4vw, 3rem);
+  .svc-m-body { padding: 1.25rem; }
+  .svc-m-body h3 {
+    font-size: 1.125rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 0.02em; margin-bottom: 0.25rem;
   }
-  .svc-nav-btn {
+  .svc-m-price {
+    font-size: 0.9375rem; font-weight: 700; color: var(--primary);
+  }
+
+  .svc-marquee-nav {
+    display: flex; gap: 0.75rem; justify-content: center;
+    margin-top: 2rem;
+  }
+  .svc-marquee-btn {
     width: 48px; height: 48px; border-radius: 50%;
     border: 2px solid var(--gray-300); background: var(--white);
     display: flex; align-items: center; justify-content: center;
-    color: var(--gray-600); transition: all 0.3s ease;
+    color: var(--gray-600); transition: all 0.3s ease; cursor: pointer;
   }
-  .svc-nav-btn:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
-  .svc-dots { display: flex; gap: 0.5rem; }
-  .svc-dot {
-    width: 10px; height: 10px; border-radius: 50%;
-    background: var(--gray-300); border: none;
-    transition: all 0.3s ease;
+  .svc-marquee-btn:hover {
+    background: var(--primary); border-color: var(--primary); color: #fff;
+    transform: scale(1.05);
   }
-  .svc-dot.active { background: var(--primary); transform: scale(1.4); }
 
   /* STATS */
   .stats-section {
@@ -429,31 +454,72 @@ import CTA from '../components/CTA.astro';
 </style>
 
 <script is:inline>
-  // Services carousel
-  const svcTrack = document.getElementById('svcCarousel');
-  const svcDots = document.querySelectorAll('.svc-dot');
-  const svcPrev = document.getElementById('svcPrev');
-  const svcNext = document.getElementById('svcNext');
-  let svcIdx = 0;
-  const svcTotal = 5;
+  // Services marquee - auto scroll + drag
+  const svcWrapper = document.getElementById('svcMarqueeWrapper');
+  const svcTrack = document.getElementById('svcMarqueeTrack');
+  if (svcWrapper && svcTrack) {
+    let isDragging = false, startX, startScrollLeft;
+    let autoScrollSpeed = 1;
+    let animFrame;
+    let paused = false;
 
-  function svcGo(i) {
-    if (!svcTrack) return;
-    svcIdx = Math.max(0, Math.min(i, svcTotal - 1));
-    const slide = svcTrack.querySelector('.svc-slide');
-    if (!slide) return;
-    const w = slide.offsetWidth + 24;
-    svcTrack.scrollTo({ left: svcIdx * w, behavior: 'smooth' });
-    svcDots.forEach((d, j) => d.classList.toggle('active', j === svcIdx));
+    function autoScroll() {
+      if (!isDragging && !paused) {
+        svcWrapper.scrollLeft += autoScrollSpeed;
+        const maxScroll = svcWrapper.scrollWidth - svcWrapper.clientWidth;
+        if (svcWrapper.scrollLeft >= maxScroll) svcWrapper.scrollLeft = 0;
+      }
+      animFrame = requestAnimationFrame(autoScroll);
+    }
+    animFrame = requestAnimationFrame(autoScroll);
+
+    svcWrapper.addEventListener('mouseenter', () => { paused = true; });
+    svcWrapper.addEventListener('mouseleave', () => {
+      if (!isDragging) { paused = false; }
+    });
+
+    svcWrapper.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      paused = true;
+      startX = e.pageX;
+      startScrollLeft = svcWrapper.scrollLeft;
+      svcTrack.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      const walk = (e.pageX - startX) * 1.5;
+      svcWrapper.scrollLeft = startScrollLeft - walk;
+    });
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        svcTrack.style.cursor = '';
+        setTimeout(() => { paused = false; }, 100);
+      }
+    });
+
+    svcWrapper.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      startX = e.touches[0].pageX;
+      startScrollLeft = svcWrapper.scrollLeft;
+    }, { passive: true });
+    svcWrapper.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      const walk = (e.touches[0].pageX - startX) * 1.5;
+      svcWrapper.scrollLeft = startScrollLeft - walk;
+    }, { passive: true });
+    svcWrapper.addEventListener('touchend', () => { isDragging = false; });
+
+    // Manual prev/next buttons
+    const svcPrevBtn = document.getElementById('svcMarqueePrev');
+    const svcNextBtn = document.getElementById('svcMarqueeNext');
+    const scrollAmount = 420;
+    svcPrevBtn?.addEventListener('click', () => {
+      svcWrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+    svcNextBtn?.addEventListener('click', () => {
+      svcWrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
   }
-
-  svcPrev?.addEventListener('click', () => svcGo(svcIdx - 1));
-  svcNext?.addEventListener('click', () => svcGo(svcIdx + 1));
-  svcDots.forEach(d => d.addEventListener('click', () => svcGo(+d.dataset.i)));
-
-  let svcAuto = setInterval(() => svcGo(svcIdx >= svcTotal - 1 ? 0 : svcIdx + 1), 4000);
-  svcTrack?.addEventListener('mouseenter', () => clearInterval(svcAuto));
-  svcTrack?.addEventListener('mouseleave', () => {
-    svcAuto = setInterval(() => svcGo(svcIdx >= svcTotal - 1 ? 0 : svcIdx + 1), 4000);
-  });
 </script>
